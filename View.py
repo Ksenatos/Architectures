@@ -8,3 +8,4 @@ class View:
         3: Find a book
         4: Quit
         """)
+    def showing_book(self):
