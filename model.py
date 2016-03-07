@@ -12,7 +12,10 @@ class DB(object):
         if self.connection is not None:
             return
         try:
-            self.connection = mdb.connect('127.0.0.1', 'root', 'May the force be with you', 'library')
+            self.connection = mdb.connect('127.0.0.1',
+                                          'root',
+                                          'May the force be with you',
+                                          'library')
 
         except mdb.Error, e:
             print "Error %d: %s fuck" % (e.args[0], e.args[1])
@@ -37,8 +40,9 @@ class DB(object):
         if self.connection is None:
             return []
         cur = self.connection.cursor(mdb.cursors.DictCursor)
-        cur.execute("SELECT b.name, b.publisher_date, a.fname, a.lname, a.age FROM book b"
-                    " INNER JOIN author a ON b.id_author = a.id_author;")
+        cur.execute("SELECT b.name, b.publisher_date,"
+                    "a.fname, a.lname, a.age FROM book b"
+                    "INNER JOIN author a ON b.id_author = a.id_author;")
         self.close()
         return cur.fetchall()
 
@@ -61,13 +65,13 @@ class DB(object):
 
 # остальные запросы сделаю позже
 # вот пример кода как можно кидать запросы
+#
+# mydb = DB()
 
-#mydb = DB()
-
-#mydb.add_author("Tony", "Stark", 45)
+# mydb.add_author("Tony", "Stark", 45)
 
 # выбираем автора по id его, оно авто инкрементное
-#mydb.add_book("Nano", 1)
+# mydb.add_book("Nano", 1)
 
-#for i in mydb.get_books():
- #   print(i)
+# for i in mydb.get_books():
+# print(i)

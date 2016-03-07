@@ -2,8 +2,11 @@ __author__ = 'paul'
 
 
 class View:
+    def __init__(self):
+        pass
 
-    def display_menu(self):
+    @staticmethod
+    def display_menu():
         print(""" Main menu
         1. Show books
         2. Show authors
@@ -12,5 +15,6 @@ class View:
         5. Quit
         """)
 
-    def print_smth(self, smth):
+    @staticmethod
+    def print_smth(smth):
         print(smth)
