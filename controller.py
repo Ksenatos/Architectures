@@ -18,16 +18,22 @@ class Controller:
     def Show_books(self):
         for i in self.mydb.get_books():
             print(i)
+
     def Show_authors(self):
         for i in self.mydb.get_authors():
             print(i)
 
     def Add_book(self):
-        books_name, authors_id = input('Enter books_name and authors_id: ')
-        self.mydb.add_book(books_name, authors_id)
+        books_name = input('Enter books_name: ')
+        authors_id = input('Authors_id: ')
+        self.mydb.add_book(books_name, int(authors_id))
+
     def Add_author(self):
-        authors_name, authors_lastname, authors_age = input('Enter authors name, authors last name, authors age: ')
-        self.mydb.add_book(authors_name, authors_lastname, authors_age)
+        authors_name = input('Enter authors name: ')
+        authors_lastname = input('Enter authors last name: ')
+        authors_age = input('Enter authors age: ')
+        self.mydb.add_author(authors_name, authors_lastname, int(authors_age))
+
     def Quit(self):
         print("Bye")
         quit()
