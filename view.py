@@ -1,7 +1,8 @@
 __author__ = 'paul'
-#from controller import Controller
+
 
 class View:
+
     def display_menu(self):
         print(""" Main menu
         1. Show books
@@ -10,3 +11,6 @@ class View:
         4. Add author
         5. Quit
         """)
+
+    def print_smth(self, smth):
+        print(smth)
