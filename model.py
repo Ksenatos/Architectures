@@ -15,7 +15,7 @@ class DB(object):
         try:
             self.connection = mdb.connect('127.0.0.1',
                                           'root',
-                                          'May the force be with you',
+                                          'helloworld',
                                           'library')
 
         except mdb.Error, e:
@@ -60,25 +60,72 @@ class DB(object):
         cur.execute("commit")
         self.close()
 
-    def add_book(self, name, id_author):
+    def add_book(self, name, id_author, id_genre):
         """func add_book add new book in table books"""
         self.connect()
         cur = self.connection.cursor(mdb.cursors.DictCursor)
         cur.execute("INSERT INTO book VALUES "
-                    "(NULL, '%s', DATE(NOW()), '%s');" % (name, id_author))
+                    "(NULL, '%s', DATE(NOW()), '%s', '%s');" % (name, id_author, id_genre))
         cur.execute("commit")
         self.close()
+
+    def add_genre(self, name):
+        self.connect()
+        cur = self.connection.cursor(mdb.cursors.DictCursor)
+        cur.execute("INSERT INTO book VALUES "
+                    "(NULL, '%s');" % name)
+        cur.execute("commit")
+        self.close()
+
+    def delete_book_byName(self, name):
+        self.connect()
+        cur = self.connection.cursor(mdb.cursors.DictCursor)
+        cur.execute("DELETE FROM book WHERE "
+                    "name = '%s');" % name)
+        cur.execute("commit")
+        self.close()
+
+    def delete_book_byId(self, id_book):
+        self.connect()
+        cur = self.connection.cursor(mdb.cursors.DictCursor)
+        cur.execute("DELETE FROM book WHERE "
+                    "id_book = '%s');" % id_book)
+        cur.execute("commit")
+        self.close()
+
+    def find_books(self, name):
+        self.connect()
+        symbol = '%'
+        if self.connection is None:
+            return []
+        cur = self.connection.cursor(mdb.cursors.DictCursor)
+        cur.execute("SELECT * FROM book WHERE name LIKE '%s%s%s';" % (symbol, name, symbol))
+        self.close()
+        return cur.fetchall()
+
+    def find_author(self, name):
+        self.connect()
+        symbol = '%'
+        if self.connection is None:
+            return []
+        cur = self.connection.cursor(mdb.cursors.DictCursor)
+        cur.execute("SELECT * FROM author WHERE concat(fname, lname) LIKE '%s%s%s';" % (symbol, name, symbol))
+        self.close()
+        return cur.fetchall()
 
 
 # остальные запросы сделаю позже
 # вот пример кода как можно кидать запросы
 #
-# mydb = DB()
-
-# mydb.add_author("Tony", "Stark", 45)
+mydb = DB()
 
 # выбираем автора по id его, оно авто инкрементное
-# mydb.add_book("Nano", 1)
 
-# for i in mydb.get_books():
-# print(i)
+# можем искать даже по части имени
+# вот пример
+
+print(mydb.find_books("Na"))
+print(mydb.find_author("To"))
+
+
+# проверьте только удаление работает ли у вас, я не проверял

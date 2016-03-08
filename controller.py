@@ -1,10 +1,7 @@
 """conroller module"""
 from model import DB
 from view import View
-import coverage
-
-
-
+# import coverage
 
 __author__ = 'paul'
 
