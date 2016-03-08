@@ -9,6 +9,7 @@ class DB(object):
         self.connection = None
 
     def connect(self):
+        """func connect provide connection between, database witch was created in MySQL server, and object mdb """
         if self.connection is not None:
             return
         try:
@@ -22,11 +23,14 @@ class DB(object):
             self.connection = None
 
     def close(self):
+        """Disconnect database and object mdb"""
         if self.connection is not None:
             self.connection.close()
         self.connection = None
 
     def get_authors(self):
+        """func get_authors get list of authors from table author, if connection was successfull"""
+
         self.connect()
         if self.connection is None:
             return []
@@ -36,6 +40,7 @@ class DB(object):
         return cur.fetchall()
 
     def get_books(self):
+        """func get_books get list of books from table books, if connection was successfull"""
         self.connect()
         if self.connection is None:
             return []
@@ -47,6 +52,7 @@ class DB(object):
         return cur.fetchall()
 
     def add_author(self, fname, lname, age):
+        """func add_author add new author in table authors """
         self.connect()
         cur = self.connection.cursor(mdb.cursors.DictCursor)
         cur.execute("INSERT INTO author VALUES "
@@ -55,6 +61,7 @@ class DB(object):
         self.close()
 
     def add_book(self, name, id_author):
+        """func add_book add new book in table books"""
         self.connect()
         cur = self.connection.cursor(mdb.cursors.DictCursor)
         cur.execute("INSERT INTO book VALUES "
