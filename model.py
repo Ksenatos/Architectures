@@ -15,7 +15,7 @@ class DB(object):
         try:
             self.connection = mdb.connect('127.0.0.1',
                                           'root',
-                                          'helloworld',
+                                          'May the force be with you',
                                           'library')
 
         except mdb.Error, e:
@@ -51,12 +51,12 @@ class DB(object):
         self.close()
         return cur.fetchall()
 
-    def add_author(self, fname, lname, age):
+    def add_author(self, fname, lname):
         """func add_author add new author in table authors """
         self.connect()
         cur = self.connection.cursor(mdb.cursors.DictCursor)
         cur.execute("INSERT INTO author VALUES "
-                    "(NULL, '%s', '%s', '%s');" % (fname, lname, age))
+                    "(NULL, '%s', '%s');" % (fname, lname))
         cur.execute("commit")
         self.close()
 
@@ -72,12 +72,12 @@ class DB(object):
     def add_genre(self, name):
         self.connect()
         cur = self.connection.cursor(mdb.cursors.DictCursor)
-        cur.execute("INSERT INTO book VALUES "
+        cur.execute("INSERT INTO genre VALUES "
                     "(NULL, '%s');" % name)
         cur.execute("commit")
         self.close()
 
-    def delete_book_byName(self, name):
+    def delete_book_by_name(self, name):
         self.connect()
         cur = self.connection.cursor(mdb.cursors.DictCursor)
         cur.execute("DELETE FROM book WHERE "
@@ -85,7 +85,7 @@ class DB(object):
         cur.execute("commit")
         self.close()
 
-    def delete_book_byId(self, id_book):
+    def delete_book_by_id(self, id_book):
         self.connect()
         cur = self.connection.cursor(mdb.cursors.DictCursor)
         cur.execute("DELETE FROM book WHERE "
@@ -117,15 +117,15 @@ class DB(object):
 # остальные запросы сделаю позже
 # вот пример кода как можно кидать запросы
 #
-mydb = DB()
+# mydb = DB()
 
 # выбираем автора по id его, оно авто инкрементное
 
 # можем искать даже по части имени
 # вот пример
 
-print(mydb.find_books("Na"))
-print(mydb.find_author("To"))
+# print(mydb.find_books("Na"))
+# print(mydb.find_author("To"))
 
 
 # проверьте только удаление работает ли у вас, я не проверял
