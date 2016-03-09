@@ -16,7 +16,12 @@ class Controller:
                         2: self.show_authors,
                         3: self.add_book,
                         4: self.add_author,
-                        5: self.quit}
+                        5: self.add_genre,
+                        6: self.delete_book_by_name,
+                        7: self.delete_book_by_id,
+                        8: self.find_books,
+                        9: self.find_author,
+                        10: self.quit}
 
     def run(self):
         """func run show menu on a display. This func call func display_menu from class view in view.py
@@ -49,9 +54,10 @@ class Controller:
         """func add_book add book in table book. vars books_name and authors_id input by user.
         This func call func add_book from class mydb in model.py"""
 
-        books_name = input('Enter books_name: ')
-        authors_id = input('Authors_id: ')
-        self.mydb.add_book(books_name, int(authors_id))
+        books_name = input('Enter books name: ')
+        authors_id = input('Authors id: ')
+        genre_id = input('Genre id: ')
+        self.mydb.add_book(books_name, int(authors_id), int(genre_id))
 
     def add_author(self):
         """func add_author add author in table author. vars authors_name, authors_lastname and authors_age input by user.
@@ -59,8 +65,36 @@ class Controller:
 
         authors_name = input('Enter authors name: ')
         authors_lastname = input('Enter authors last name: ')
-        authors_age = input('Enter authors age: ')
-        self.mydb.add_author(authors_name, authors_lastname, int(authors_age))
+        # authors_age = input('Enter authors age: ')
+        self.mydb.add_author(authors_name, authors_lastname)
+
+    def add_genre(self):
+        """func add genre in table genre. vars genre name input by user.
+        This func call func add_book from class mydb in model.py"""
+
+        genres_name = input('Enter a new genre: ')
+        self.mydb.add_genre(genres_name)
+
+    def delete_book_by_name(self):
+        """  """
+        books_name = input('Enter books name: ')
+        self.mydb.delete_book_by_name(books_name)
+
+    def delete_book_by_id(self):
+        """  """
+        books_id = input('Enter books ID: ')
+        self.mydb.delete_book_by_id(books_id)
+
+    def find_books(self):
+        """ """
+        books_name = input('Search: ')
+        self.view.print_smth(self.mydb.find_books(books_name))
+
+    def find_author(self):
+        """ """
+        authors_name = input('Search: ')
+        self.view.print_smth(self.mydb.find_author(authors_name))
+
 
     @staticmethod
     def quit():
