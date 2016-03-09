@@ -124,10 +124,7 @@ class DB(object):
 # можем искать даже по части имени
 # вот пример
 
-<<<<<<< HEAD
 # print(mydb.get_books())
-=======
->>>>>>> origin/master
 # print(mydb.find_books("Na"))
 # print(mydb.find_author("To"))
 
