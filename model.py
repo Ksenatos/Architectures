@@ -46,7 +46,7 @@ class DB(object):
             return []
         cur = self.connection.cursor(mdb.cursors.DictCursor)
         cur.execute("SELECT b.name, b.publisher_date,"
-                    "a.fname, a.lname, a.age FROM book b"
+                    "a.fname, a.lname FROM book b "
                     "INNER JOIN author a ON b.id_author = a.id_author;")
         self.close()
         return cur.fetchall()
@@ -124,8 +124,9 @@ mydb = DB()
 # можем искать даже по части имени
 # вот пример
 
-print(mydb.find_books("Na"))
-print(mydb.find_author("To"))
+# print(mydb.get_books())
+# print(mydb.find_books("Na"))
+# print(mydb.find_author("To"))
 
 
 # проверьте только удаление работает ли у вас, я не проверял
