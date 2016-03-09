@@ -12,7 +12,12 @@ class View:
         2. Show authors
         3. Add book
         4. Add author
-        5. Quit
+        5. Add genre
+        6. Delete by name
+        7. Delete by ID
+        8. Finf a book
+        9. Find an author
+        10. Quit
         """)
 
     @staticmethod
