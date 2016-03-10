@@ -15,11 +15,11 @@ class DB(object):
         try:
             self.connection = mdb.connect('127.0.0.1',
                                           'root',
-                                          'hell',
+                                          'May the force be with you',
                                           'library')
 
         except mdb.Error, e:
-            print "Error %d: %s change your fucking password" % (e.args[0], e.args[1])
+            print "Error %d: %s change password" % (e.args[0], e.args[1])
             self.connection = None
 
     def close(self):

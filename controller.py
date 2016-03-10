@@ -86,7 +86,7 @@ class Controller:
     def delete_book_by_id(self):
         """  """
         books_id = input('Enter books ID: ')
-        self.mydb.delete_book_by_id(books_id)
+        self.mydb.delete_book_by_id(int(books_id))
 
     def find_books(self):
         """ """
