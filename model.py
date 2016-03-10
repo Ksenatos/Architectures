@@ -15,11 +15,11 @@ class DB(object):
         try:
             self.connection = mdb.connect('127.0.0.1',
                                           'root',
-                                          'May the force be with you',
+                                          'hell',
                                           'library')
 
         except mdb.Error, e:
-            print "Error %d: %s fuck" % (e.args[0], e.args[1])
+            print "Error %d: %s change your fucking password" % (e.args[0], e.args[1])
             self.connection = None
 
     def close(self):
@@ -46,8 +46,9 @@ class DB(object):
             return []
         cur = self.connection.cursor(mdb.cursors.DictCursor)
         cur.execute("SELECT b.name, b.publisher_date,"
-                    "a.fname, a.lname FROM book b "
-                    "INNER JOIN author a ON b.id_author = a.id_author;")
+                    "a.fname, a.lname, g.name from book b "
+                    "inner join author a inner join genre g "
+                    "where b.id_author = a.id_author and b.id_genre = g.id_genre;")
         self.close()
         return cur.fetchall()
 
@@ -117,14 +118,14 @@ class DB(object):
 # остальные запросы сделаю позже
 # вот пример кода как можно кидать запросы
 #
-# mydb = DB()
+mydb = DB()
 
 # выбираем автора по id его, оно авто инкрементное
 
 # можем искать даже по части имени
 # вот пример
 
-# print(mydb.get_books())
+print(mydb.get_books())
 # print(mydb.find_books("Na"))
 # print(mydb.find_author("To"))
 

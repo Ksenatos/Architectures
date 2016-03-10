@@ -41,14 +41,17 @@ class Controller:
          Variable i goes across row in table books"""
 
         for i in self.mydb.get_books():
-            self.view.print_smth(i)
+            self.view.print_smth("Book name: %s" % i["name"])
+            self.view.print_smth("Author: %s %s" % (i["fname"], i["lname"]))
+            self.view.print_smth("Genre: %s" % i["g.name"])
+            self.view.print_smth("--------------------------------")
 
     def show_authors(self):
         """func show_authors get list of authors. This func call func get_authors from class mydb in model.py.
          Variable i goes across row in table author"""
 
         for i in self.mydb.get_authors():
-            self.view.print_smth(i)
+            self.view.print_smth("Author: %s %s" % (i["FNAME"], i["LNAME"]))
 
     def add_book(self):
         """func add_book add book in table book. vars books_name and authors_id input by user.
@@ -95,13 +98,13 @@ class Controller:
         authors_name = input('Search: ')
         self.view.print_smth(self.mydb.find_author(authors_name))
 
-
     @staticmethod
     def quit():
         """func quit exit from program"""
 
         print("Bye")
         quit()
+
 
 if __name__ == "__main__":
     Controller().run()
