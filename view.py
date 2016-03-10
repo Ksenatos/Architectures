@@ -15,7 +15,7 @@ class View:
         5. Add genre
         6. Delete by name
         7. Delete by ID
-        8. Finf a book
+        8. Find a book
         9. Find an author
         10. Quit
         """)

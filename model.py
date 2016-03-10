@@ -9,7 +9,8 @@ class DB(object):
         self.connection = None
 
     def connect(self):
-        """func connect provide connection between, database witch was created in MySQL server, and object mdb """
+        """func connect provide connection between, database
+         witch was created in MySQL server, and object mdb """
         if self.connection is not None:
             return
         try:
@@ -29,7 +30,8 @@ class DB(object):
         self.connection = None
 
     def get_authors(self):
-        """func get_authors get list of authors from table author, if connection was successfull"""
+        """func get_authors get list of authors from table author,
+         if connection was successfull"""
 
         self.connect()
         if self.connection is None:
@@ -40,7 +42,8 @@ class DB(object):
         return cur.fetchall()
 
     def get_books(self):
-        """func get_books get list of books from table books, if connection was successfull"""
+        """func get_books get list of books from table books,
+        if connection was successfull"""
         self.connect()
         if self.connection is None:
             return []
@@ -48,7 +51,8 @@ class DB(object):
         cur.execute("SELECT b.name, b.publisher_date,"
                     "a.fname, a.lname, g.name from book b "
                     "inner join author a inner join genre g "
-                    "where b.id_author = a.id_author and b.id_genre = g.id_genre;")
+                    "where b.id_author = a.id_author "
+                    "and b.id_genre = g.id_genre;")
         self.close()
         return cur.fetchall()
 
@@ -66,7 +70,8 @@ class DB(object):
         self.connect()
         cur = self.connection.cursor(mdb.cursors.DictCursor)
         cur.execute("INSERT INTO book VALUES "
-                    "(NULL, '%s', DATE(NOW()), '%s', '%s');" % (name, id_author, id_genre))
+                    "(NULL, '%s', DATE(NOW()), '%s', '%s');"
+                    % (name, id_author, id_genre))
         cur.execute("commit")
         self.close()
 
@@ -100,7 +105,8 @@ class DB(object):
         if self.connection is None:
             return []
         cur = self.connection.cursor(mdb.cursors.DictCursor)
-        cur.execute("SELECT * FROM book WHERE name LIKE '%s%s%s';" % (symbol, name, symbol))
+        cur.execute("SELECT * FROM book WHERE name LIKE '%s%s%s';"
+                    % (symbol, name, symbol))
         self.close()
         return cur.fetchall()
 
@@ -110,7 +116,9 @@ class DB(object):
         if self.connection is None:
             return []
         cur = self.connection.cursor(mdb.cursors.DictCursor)
-        cur.execute("SELECT * FROM author WHERE concat(fname, lname) LIKE '%s%s%s';" % (symbol, name, symbol))
+        cur.execute("SELECT * FROM author"
+                    " WHERE concat(fname, lname) LIKE '%s%s%s';"
+                    % (symbol, name, symbol))
         self.close()
         return cur.fetchall()
 
@@ -118,14 +126,14 @@ class DB(object):
 # остальные запросы сделаю позже
 # вот пример кода как можно кидать запросы
 #
-mydb = DB()
+# mydb = DB()
 
 # выбираем автора по id его, оно авто инкрементное
 
 # можем искать даже по части имени
 # вот пример
 
-print(mydb.get_books())
+# print(mydb.get_books())
 # print(mydb.find_books("Na"))
 # print(mydb.find_author("To"))
 
