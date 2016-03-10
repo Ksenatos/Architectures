@@ -1,11 +1,14 @@
+"""Model"""
 # coding=utf-8
 import coverage
 import MySQLdb as mdb
+import doctest
 
 __author__ = 'Michael'
 
 
 class DB(object):
+    """data base"""
     def __init__(self):
         """initialization
 
@@ -124,7 +127,8 @@ class DB(object):
         self.close()
 
     def delete_book_by_name(self, name):
-        """func delete_book_by_name delete book, from table books, which name was entered
+        """func delete_book_by_name delete book, from table books,
+        which name was entered
 
         >>> delete_book_by_name(mdb,'Straj')
         Traceback (most recent call last):
@@ -138,7 +142,8 @@ class DB(object):
         self.close()
 
     def delete_book_by_id(self, id_book):
-        """func delete_book_by_id delete book, from table books, which Id was entered
+        """func delete_book_by_id delete book, from table books,
+        which Id was entered
 
         >>> delete_book_by_id(mdb, '1')
         Traceback (most recent call last):
@@ -152,7 +157,8 @@ class DB(object):
         self.close()
 
     def find_books(self, name):
-        """func find_books are looking the book in table books, which name was entered
+        """func find_books are looking the book in table books,
+        which name was entered
 
         >>> mdb.connection() is None
         Traceback (most recent call last):
@@ -174,7 +180,8 @@ class DB(object):
         return cur.fetchall()
 
     def find_author(self, name):
-        """func find_author are looking the author in table authors, whose name was entered
+        """func find_author are looking the author in table authors,
+        whose name was entered
 
         >>> mdb.connection() is None
         Traceback (most recent call last):
@@ -195,6 +202,4 @@ class DB(object):
         self.close()
         return cur.fetchall()
 
-
-import doctest
 doctest.testmod()

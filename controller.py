@@ -1,4 +1,4 @@
-"""conroller module"""
+"""controller module"""
 from model import DB
 from view import View
 # import coverage
@@ -7,6 +7,8 @@ __author__ = 'paul'
 
 
 class Controller:
+    """The controller """
+
     def __init__(self):
         """ Initialization func"""
 
@@ -84,22 +86,22 @@ class Controller:
         self.mydb.add_genre(genres_name)
 
     def delete_book_by_name(self):
-        """  """
+        """func delete book in table books by name."""
         books_name = input('Enter books name: ')
         self.mydb.delete_book_by_name(books_name)
 
     def delete_book_by_id(self):
-        """  """
+        """func delete book in table books my Id"""
         books_id = input('Enter books ID: ')
         self.mydb.delete_book_by_id(int(books_id))
 
     def find_books(self):
-        """ """
+        """func searching book by part of its name"""
         books_name = input('Search: ')
         self.view.print_smth(self.mydb.find_books(books_name))
 
     def find_author(self):
-        """ """
+        """ffunc searching book by part of his name"""
         authors_name = input('Search: ')
         self.view.print_smth(self.mydb.find_author(authors_name))
 

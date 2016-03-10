@@ -1,7 +1,10 @@
+"""View"""
 __author__ = 'paul'
 
 
 class View:
+    """The view"""
+
     def __init__(self):
         """initialization
 
