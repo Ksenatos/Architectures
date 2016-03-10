@@ -1,0 +1,210 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>controller &mdash; ARClab1 1 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="ARClab1 1 documentation" href="../index.html" />
+    <link rel="up" title="Module code" href="index.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">ARClab1 1 documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Module code</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for controller</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;controller module&quot;&quot;&quot;</span>
+<span class="kn">from</span> <span class="nn">model</span> <span class="kn">import</span> <span class="n">DB</span>
+<span class="kn">from</span> <span class="nn">view</span> <span class="kn">import</span> <span class="n">View</span>
+<span class="c1"># import coverage</span>
+
+<span class="n">__author__</span> <span class="o">=</span> <span class="s1">&#39;paul&#39;</span>
+
+
+<div class="viewcode-block" id="Controller"><a class="viewcode-back" href="../index.html#controller.Controller">[docs]</a><span class="k">class</span> <span class="nc">Controller</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;The controller &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Initialization func&quot;&quot;&quot;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">view</span> <span class="o">=</span> <span class="n">View</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mydb</span> <span class="o">=</span> <span class="n">DB</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">choices</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">show_books</span><span class="p">,</span>
+                        <span class="mi">2</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">show_authors</span><span class="p">,</span>
+                        <span class="mi">3</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">add_book</span><span class="p">,</span>
+                        <span class="mi">4</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">add_author</span><span class="p">,</span>
+                        <span class="mi">5</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">add_genre</span><span class="p">,</span>
+                        <span class="mi">6</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">delete_book_by_name</span><span class="p">,</span>
+                        <span class="mi">7</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">delete_book_by_id</span><span class="p">,</span>
+                        <span class="mi">8</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">find_books</span><span class="p">,</span>
+                        <span class="mi">9</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">find_author</span><span class="p">,</span>
+                        <span class="mi">10</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">quit</span><span class="p">}</span>
+
+<div class="viewcode-block" id="Controller.run"><a class="viewcode-back" href="../index.html#controller.Controller.run">[docs]</a>    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;func run show menu on a display.</span>
+<span class="sd">            This func call func display_menu from class view in view.py</span>
+<span class="sd">           if user enter incorrect number func give error&quot;&quot;&quot;</span>
+
+        <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="n">display_menu</span><span class="p">()</span>
+            <span class="n">choices</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Enter an option: &quot;</span><span class="p">)</span>
+            <span class="n">action</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">choices</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">choices</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">action</span><span class="p">:</span>
+                <span class="n">action</span><span class="p">()</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">print</span><span class="p">(</span><span class="s2">&quot;{0} is not a valid choice&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">choices</span><span class="p">))</span></div>
+
+<div class="viewcode-block" id="Controller.show_books"><a class="viewcode-back" href="../index.html#controller.Controller.show_books">[docs]</a>    <span class="k">def</span> <span class="nf">show_books</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;func show_books get list of books.</span>
+<span class="sd">        This func call func get_books from class my.db in model.py.</span>
+<span class="sd">         Variable i goes across row in table books&quot;&quot;&quot;</span>
+
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">mydb</span><span class="o">.</span><span class="n">get_books</span><span class="p">():</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="n">print_smth</span><span class="p">(</span><span class="s2">&quot;Book name: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">i</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">])</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="n">print_smth</span><span class="p">(</span><span class="s2">&quot;Author: </span><span class="si">%s</span><span class="s2"> </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">i</span><span class="p">[</span><span class="s2">&quot;FNAME&quot;</span><span class="p">],</span> <span class="n">i</span><span class="p">[</span><span class="s2">&quot;LNAME&quot;</span><span class="p">]))</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="n">print_smth</span><span class="p">(</span><span class="s2">&quot;Genre: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">i</span><span class="p">[</span><span class="s2">&quot;g.name&quot;</span><span class="p">])</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="n">print_smth</span><span class="p">(</span><span class="s2">&quot;--------------------------------&quot;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Controller.show_authors"><a class="viewcode-back" href="../index.html#controller.Controller.show_authors">[docs]</a>    <span class="k">def</span> <span class="nf">show_authors</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;func show_authors get list of authors.</span>
+<span class="sd">        This func call func get_authors from class mydb in model.py.</span>
+<span class="sd">         Variable i goes across row in table author&quot;&quot;&quot;</span>
+
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">mydb</span><span class="o">.</span><span class="n">get_authors</span><span class="p">():</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="n">print_smth</span><span class="p">(</span><span class="s2">&quot;Author: </span><span class="si">%s</span><span class="s2"> </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">i</span><span class="p">[</span><span class="s2">&quot;FNAME&quot;</span><span class="p">],</span> <span class="n">i</span><span class="p">[</span><span class="s2">&quot;LNAME&quot;</span><span class="p">]))</span></div>
+
+<div class="viewcode-block" id="Controller.add_book"><a class="viewcode-back" href="../index.html#controller.Controller.add_book">[docs]</a>    <span class="k">def</span> <span class="nf">add_book</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;func add_book add book in table book.</span>
+<span class="sd">        vars books_name and authors_id input by user.</span>
+<span class="sd">        This func call func add_book from class mydb in model.py&quot;&quot;&quot;</span>
+
+        <span class="n">books_name</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s1">&#39;Enter books name: &#39;</span><span class="p">)</span>
+        <span class="n">authors_id</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s1">&#39;Authors id: &#39;</span><span class="p">)</span>
+        <span class="n">genre_id</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s1">&#39;Genre id: &#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mydb</span><span class="o">.</span><span class="n">add_book</span><span class="p">(</span><span class="n">books_name</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="n">authors_id</span><span class="p">),</span> <span class="nb">int</span><span class="p">(</span><span class="n">genre_id</span><span class="p">))</span></div>
+
+<div class="viewcode-block" id="Controller.add_author"><a class="viewcode-back" href="../index.html#controller.Controller.add_author">[docs]</a>    <span class="k">def</span> <span class="nf">add_author</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;func add_author add author in table author.</span>
+<span class="sd">         vars authors_name, authors_lastname and authors_age input by user.</span>
+<span class="sd">        This func call func add_author from class mydb in model.py&quot;&quot;&quot;</span>
+
+        <span class="n">authors_name</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s1">&#39;Enter authors name: &#39;</span><span class="p">)</span>
+        <span class="n">authors_lastname</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s1">&#39;Enter authors last name: &#39;</span><span class="p">)</span>
+        <span class="c1"># authors_age = input(&#39;Enter authors age: &#39;)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mydb</span><span class="o">.</span><span class="n">add_author</span><span class="p">(</span><span class="n">authors_name</span><span class="p">,</span> <span class="n">authors_lastname</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Controller.add_genre"><a class="viewcode-back" href="../index.html#controller.Controller.add_genre">[docs]</a>    <span class="k">def</span> <span class="nf">add_genre</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;func add genre in table genre. vars genre name input by user.</span>
+<span class="sd">        This func call func add_book from class mydb in model.py&quot;&quot;&quot;</span>
+
+        <span class="n">genres_name</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s1">&#39;Enter a new genre: &#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mydb</span><span class="o">.</span><span class="n">add_genre</span><span class="p">(</span><span class="n">genres_name</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Controller.delete_book_by_name"><a class="viewcode-back" href="../index.html#controller.Controller.delete_book_by_name">[docs]</a>    <span class="k">def</span> <span class="nf">delete_book_by_name</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;func delete book in table books by name.&quot;&quot;&quot;</span>
+        <span class="n">books_name</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s1">&#39;Enter books name: &#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mydb</span><span class="o">.</span><span class="n">delete_book_by_name</span><span class="p">(</span><span class="n">books_name</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Controller.delete_book_by_id"><a class="viewcode-back" href="../index.html#controller.Controller.delete_book_by_id">[docs]</a>    <span class="k">def</span> <span class="nf">delete_book_by_id</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;func delete book in table books my Id&quot;&quot;&quot;</span>
+        <span class="n">books_id</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s1">&#39;Enter books ID: &#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mydb</span><span class="o">.</span><span class="n">delete_book_by_id</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">books_id</span><span class="p">))</span></div>
+
+<div class="viewcode-block" id="Controller.find_books"><a class="viewcode-back" href="../index.html#controller.Controller.find_books">[docs]</a>    <span class="k">def</span> <span class="nf">find_books</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;func searching book by part of its name&quot;&quot;&quot;</span>
+        <span class="n">books_name</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s1">&#39;Search: &#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="n">print_smth</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mydb</span><span class="o">.</span><span class="n">find_books</span><span class="p">(</span><span class="n">books_name</span><span class="p">))</span></div>
+
+<div class="viewcode-block" id="Controller.find_author"><a class="viewcode-back" href="../index.html#controller.Controller.find_author">[docs]</a>    <span class="k">def</span> <span class="nf">find_author</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;ffunc searching book by part of his name&quot;&quot;&quot;</span>
+        <span class="n">authors_name</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s1">&#39;Search: &#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="n">print_smth</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mydb</span><span class="o">.</span><span class="n">find_author</span><span class="p">(</span><span class="n">authors_name</span><span class="p">))</span></div>
+
+    <span class="nd">@staticmethod</span>
+<div class="viewcode-block" id="Controller.quit"><a class="viewcode-back" href="../index.html#controller.Controller.quit">[docs]</a>    <span class="k">def</span> <span class="nf">quit</span><span class="p">():</span>
+        <span class="sd">&quot;&quot;&quot;func quit exit from program&quot;&quot;&quot;</span>
+
+        <span class="k">print</span><span class="p">(</span><span class="s2">&quot;Bye&quot;</span><span class="p">)</span>
+        <span class="n">quit</span><span class="p">()</span></div></div>
+
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">Controller</span><span class="p">()</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">ARClab1 1 documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >Module code</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2016, Michael Vlad Paul.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.6.
+    </div>
+  </body>
+</html>
