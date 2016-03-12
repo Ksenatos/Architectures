@@ -15,15 +15,15 @@ class Controller:
         self.view = View()
         self.mydb = DB()
         self.choices = {"1": self.show_books,
-                        2: self.show_authors,
-                        3: self.add_book,
-                        4: self.add_author,
-                        5: self.add_genre,
-                        6: self.delete_book_by_name,
-                        7: self.delete_book_by_id,
-                        8: self.find_books,
-                        9: self.find_author,
-                        "q": self.quit}
+                        "2": self.show_authors,
+                        "3": self.add_book,
+                        "4": self.add_author,
+                        "5": self.add_genre,
+                        "6": self.delete_book_by_name,
+                        "7": self.delete_book_by_id,
+                        "8": self.find_books,
+                        "9": self.find_author,
+                        "10": self.quit}
 
     def run(self):
         """func run show menu on a display.
@@ -38,7 +38,6 @@ class Controller:
                 action()
             else:
                 print("{0} is not a valid choice".format(choice))
-                print(self.choices.keys())
 
     def show_books(self):
         """func show_books get list of books.
@@ -71,7 +70,7 @@ class Controller:
 
     def add_author(self):
         """func add_author add author in table author.
-         vars authors_name, authors_lastname and authors_age input by user.
+         vars authors_name, authors lastname and authors_age input by user.
         This func call func add_author from class mydb in model.py"""
 
         authors_name = input('Enter authors name: ')
