@@ -14,7 +14,7 @@ class Controller:
 
         self.view = View()
         self.mydb = DB()
-        self.choices = {1: self.show_books,
+        self.choices = {"1": self.show_books,
                         2: self.show_authors,
                         3: self.add_book,
                         4: self.add_author,
@@ -23,7 +23,7 @@ class Controller:
                         7: self.delete_book_by_id,
                         8: self.find_books,
                         9: self.find_author,
-                        10: self.quit}
+                        "q": self.quit}
 
     def run(self):
         """func run show menu on a display.
@@ -32,12 +32,13 @@ class Controller:
 
         while True:
             self.view.display_menu()
-            choices = input("Enter an option: ")
-            action = self.choices.get(choices)
+            choice = input("Enter an option: ")
+            action = self.choices.get(choice)
             if action:
                 action()
             else:
-                print("{0} is not a valid choice".format(choices))
+                print("{0} is not a valid choice".format(choice))
+                print(self.choices.keys())
 
     def show_books(self):
         """func show_books get list of books.
@@ -46,7 +47,7 @@ class Controller:
 
         for i in self.mydb.get_books():
             self.view.print_smth("Book name: %s" % i["name"])
-            self.view.print_smth("Author: %s %s" % (i["FNAME"], i["LNAME"]))
+            self.view.print_smth("Author: %s %s" % (i["fname"], i["lname"]))
             self.view.print_smth("Genre: %s" % i["g.name"])
             self.view.print_smth("--------------------------------")
 

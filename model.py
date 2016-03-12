@@ -1,7 +1,7 @@
 """Model"""
 # coding=utf-8
-import coverage
-import MySQLdb as mdb
+#import coverage
+import pymysql as mdb
 import doctest
 
 __author__ = 'Michael'
@@ -35,12 +35,13 @@ class DB(object):
         try:
             self.connection = mdb.connect('127.0.0.1',
                                           'root',
-                                          '1111',
+                                          'May the force be with you',
                                           'library')
 
-        except mdb.Error, e:
-            print "Error %d: %s change password" % (e.args[0], e.args[1])
+        except mdb.Error as e:
             self.connection = None
+
+        print("sdff")
 
     def close(self):
         """Disconnect database and object mdb
