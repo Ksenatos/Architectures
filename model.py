@@ -86,8 +86,7 @@ class DB(object):
         if self.connection is None:
             return []
         cur = self.connection.cursor(mdb.cursors.DictCursor)
-        cur.execute("SELECT b.name, b.publisher_date,"
-                    "a.fname, a.lname, g.name from book b "
+        cur.execute("SELECT b.name, a.fname, a.lname, g.name from book b "
                     "inner join author a inner join genre g "
                     "where b.id_author = a.id_author "
                     "and b.id_genre = g.id_genre;")
