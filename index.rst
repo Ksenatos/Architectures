@@ -24,6 +24,20 @@ View
 .. automodule:: view
    :members:
 
+Test
+======
+
+.. automodule:: test
+   :members:
+
+
+Classes
+========
+
+.. automodule:: dbClasses
+   :members:
+
+
 
 Indices and tables
 ==================

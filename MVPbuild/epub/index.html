@@ -43,11 +43,7 @@
 <dl class="method">
 <dt id="model.DB.add_author">
 <code class="descname">add_author</code><span class="sig-paren">(</span><em>fname</em>, <em>lname</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/model.html#DB.add_author"><span class="viewcode-link">[source]</span></a></dt>
-<dd><p>func add_author add new author in table authors</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">add_author</span><span class="p">(</span><span class="n">mdb</span><span class="p">,</span> <span class="s1">&#39;Karl&#39;</span><span class="p">,</span> <span class="s1">&#39;JJ&#39;</span><span class="p">)</span>
-<span class="go">[&#39;Karl&#39;, &#39;JJ&#39;]</span>
-</pre></div>
-</div>
+<dd><p>func add_author add new author in table author</p>
 </dd></dl>
 
 <dl class="method">
@@ -66,25 +62,13 @@
 <dt id="model.DB.close">
 <code class="descname">close</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/model.html#DB.close"><span class="viewcode-link">[source]</span></a></dt>
 <dd><p>Disconnect database and object mdb</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">mdb</span><span class="o">.</span><span class="n">connection</span> <span class="ow">is</span> <span class="bp">None</span>
-<span class="gt">Traceback (most recent call last):</span>
-<span class="gr">Connection error</span>: <span class="n">already disconnect</span>
-</pre></div>
-</div>
 </dd></dl>
 
 <dl class="method">
 <dt id="model.DB.connect">
 <code class="descname">connect</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/model.html#DB.connect"><span class="viewcode-link">[source]</span></a></dt>
-<dd><dl class="docutils">
-<dt>func connect provide connection between, database</dt>
-<dd>witch was created in MySQL server, and object mdb</dd>
-</dl>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">mdb</span><span class="o">.</span><span class="n">connection</span><span class="p">()</span> <span class="ow">is</span> <span class="bp">None</span>
-<span class="gt">Traceback (most recent call last):</span>
-<span class="gr">connection error</span>: <span class="n">connection is failed</span>
-</pre></div>
-</div>
+<dd><p>func connect provide connection between, database
+witch was created in MySQL server, and object mdb</p>
 </dd></dl>
 
 <dl class="method">
@@ -92,11 +76,6 @@
 <code class="descname">delete_book_by_id</code><span class="sig-paren">(</span><em>id_book</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/model.html#DB.delete_book_by_id"><span class="viewcode-link">[source]</span></a></dt>
 <dd><p>func delete_book_by_id delete book, from table books,
 which Id was entered</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">delete_book_by_id</span><span class="p">(</span><span class="n">mdb</span><span class="p">,</span> <span class="s1">&#39;1&#39;</span><span class="p">)</span>
-<span class="gt">Traceback (most recent call last):</span>
-<span class="gr">Error</span>: <span class="n">unpredictable result</span>
-</pre></div>
-</div>
 </dd></dl>
 
 <dl class="method">
@@ -104,11 +83,6 @@ which Id was entered</p>
 <code class="descname">delete_book_by_name</code><span class="sig-paren">(</span><em>name</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/model.html#DB.delete_book_by_name"><span class="viewcode-link">[source]</span></a></dt>
 <dd><p>func delete_book_by_name delete book, from table books,
 which name was entered</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">delete_book_by_name</span><span class="p">(</span><span class="n">mdb</span><span class="p">,</span><span class="s1">&#39;Straj&#39;</span><span class="p">)</span>
-<span class="gt">Traceback (most recent call last):</span>
-<span class="gr">Error</span>: <span class="n">unpredictable result</span>
-</pre></div>
-</div>
 </dd></dl>
 
 <dl class="method">
@@ -116,16 +90,6 @@ which name was entered</p>
 <code class="descname">find_author</code><span class="sig-paren">(</span><em>name</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/model.html#DB.find_author"><span class="viewcode-link">[source]</span></a></dt>
 <dd><p>func find_author are looking the author in table authors,
 whose name was entered</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">mdb</span><span class="o">.</span><span class="n">connection</span><span class="p">()</span> <span class="ow">is</span> <span class="bp">None</span>
-<span class="gt">Traceback (most recent call last):</span>
-<span class="gr">connection error</span>: <span class="n">connection is failed</span>
-</pre></div>
-</div>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">find_author</span><span class="p">(</span><span class="n">mdb</span><span class="p">,</span> <span class="s1">&#39;Pehov&#39;</span><span class="p">)</span>
-<span class="gt">Traceback (most recent call last):</span>
-<span class="gr">Error</span>: <span class="n">unpredictable result</span>
-</pre></div>
-</div>
 </dd></dl>
 
 <dl class="method">
@@ -133,16 +97,6 @@ whose name was entered</p>
 <code class="descname">find_books</code><span class="sig-paren">(</span><em>name</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/model.html#DB.find_books"><span class="viewcode-link">[source]</span></a></dt>
 <dd><p>func find_books are looking the book in table books,
 which name was entered</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">mdb</span><span class="o">.</span><span class="n">connection</span><span class="p">()</span> <span class="ow">is</span> <span class="bp">None</span>
-<span class="gt">Traceback (most recent call last):</span>
-<span class="gr">connection error</span>: <span class="n">connection is failed</span>
-</pre></div>
-</div>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">find_books</span><span class="p">(</span><span class="n">mdb</span><span class="p">,</span><span class="s1">&#39;Straj&#39;</span><span class="p">)</span>
-<span class="gt">Traceback (most recent call last):</span>
-<span class="gr">Error</span>: <span class="n">unpredictable result</span>
-</pre></div>
-</div>
 </dd></dl>
 
 <dl class="method">
@@ -150,11 +104,6 @@ which name was entered</p>
 <code class="descname">get_authors</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/model.html#DB.get_authors"><span class="viewcode-link">[source]</span></a></dt>
 <dd><p>func get_authors get list of authors from table author,
 if connection was successfull</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">mdb</span><span class="o">.</span><span class="n">connection</span><span class="p">()</span> <span class="ow">is</span> <span class="bp">None</span>
-<span class="gt">Traceback (most recent call last):</span>
-<span class="gr">connection error</span>: <span class="n">connection is failed</span>
-</pre></div>
-</div>
 </dd></dl>
 
 <dl class="method">
@@ -162,11 +111,6 @@ if connection was successfull</p>
 <code class="descname">get_books</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/model.html#DB.get_books"><span class="viewcode-link">[source]</span></a></dt>
 <dd><p>func get_books get list of books from table books,
 if connection was successfull</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">mdb</span><span class="o">.</span><span class="n">connection</span><span class="p">()</span> <span class="ow">is</span> <span class="bp">None</span>
-<span class="gt">Traceback (most recent call last):</span>
-<span class="gr">connection error</span>: <span class="n">connection is failed</span>
-</pre></div>
-</div>
 </dd></dl>
 
 </dd></dl>
@@ -184,7 +128,7 @@ if connection was successfull</p>
 <code class="descname">add_author</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/controller.html#Controller.add_author"><span class="viewcode-link">[source]</span></a></dt>
 <dd><dl class="docutils">
 <dt>func add_author add author in table author.</dt>
-<dd>vars authors_name, authors_lastname and authors_age input by user.</dd>
+<dd>vars authors_name, authors lastname and authors_age input by user.</dd>
 </dl>
 <p>This func call func add_author from class mydb in model.py</p>
 </dd></dl>
@@ -207,7 +151,7 @@ This func call func add_book from class mydb in model.py</p>
 <dl class="method">
 <dt id="controller.Controller.delete_book_by_id">
 <code class="descname">delete_book_by_id</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/controller.html#Controller.delete_book_by_id"><span class="viewcode-link">[source]</span></a></dt>
-<dd><p>ffunc delete book in table books my Id</p>
+<dd><p>func delete book in table books my Id</p>
 </dd></dl>
 
 <dl class="method">
@@ -225,7 +169,7 @@ This func call func add_book from class mydb in model.py</p>
 <dl class="method">
 <dt id="controller.Controller.find_books">
 <code class="descname">find_books</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/controller.html#Controller.find_books"><span class="viewcode-link">[source]</span></a></dt>
-<dd><p>ffunc searching book by part of its name</p>
+<dd><p>func searching book by part of its name</p>
 </dd></dl>
 
 <dl class="staticmethod">
@@ -275,22 +219,101 @@ This func call func get_books from class my.db in model.py.</p>
 <dl class="staticmethod">
 <dt id="view.View.display_menu">
 <em class="property">static </em><code class="descname">display_menu</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/view.html#View.display_menu"><span class="viewcode-link">[source]</span></a></dt>
-<dd><div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">display_menu</span><span class="p">()</span>
-<span class="go">Main menu</span>
-<span class="go">1. Show books</span>
-<span class="go">2. Show authors</span>
-<span class="go">3. Add book</span>
-<span class="go">4. Add author</span>
-<span class="go">5. Add genre</span>
-<span class="go">6. Delete by name</span>
-<span class="go">7. Delete by ID</span>
-<span class="go">8. Find a book</span>
-<span class="go">9. Find an author</span>
-<span class="go">10. Quit</span>
-</pre></div>
-</div>
+<dd><p>Main menu</p>
 </dd></dl>
 
+</dd></dl>
+
+</div>
+<div class="section" id="module-test">
+<span id="test"></span><h1>Test</h1>
+<p>Test</p>
+<dl class="class">
+<dt id="test.TestUT">
+<em class="property">class </em><code class="descclassname">test.</code><code class="descname">TestUT</code><span class="sig-paren">(</span><em>methodName='runTest'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/test.html#TestUT"><span class="viewcode-link">[source]</span></a></dt>
+<dd><p>class test</p>
+<dl class="method">
+<dt id="test.TestUT.test_add_authors">
+<code class="descname">test_add_authors</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/test.html#TestUT.test_add_authors"><span class="viewcode-link">[source]</span></a></dt>
+<dd><p>I run out of imagination to write this comments</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="test.TestUT.test_add_book">
+<code class="descname">test_add_book</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/test.html#TestUT.test_add_book"><span class="viewcode-link">[source]</span></a></dt>
+<dd><p>I had a very long lay</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="test.TestUT.test_add_genre">
+<code class="descname">test_add_genre</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/test.html#TestUT.test_add_genre"><span class="viewcode-link">[source]</span></a></dt>
+<dd><p>AAAAAAAAAAAA_AAA__AAA</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="test.TestUT.test_conect">
+<code class="descname">test_conect</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/test.html#TestUT.test_conect"><span class="viewcode-link">[source]</span></a></dt>
+<dd><p>im to tired</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="test.TestUT.test_delete_book">
+<code class="descname">test_delete_book</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/test.html#TestUT.test_delete_book"><span class="viewcode-link">[source]</span></a></dt>
+<dd><p>YYUUPA! the last one!</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="test.TestUT.test_find_author">
+<code class="descname">test_find_author</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/test.html#TestUT.test_find_author"><span class="viewcode-link">[source]</span></a></dt>
+<dd><p>why do we need so many functions..?</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="test.TestUT.test_find_books">
+<code class="descname">test_find_books</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/test.html#TestUT.test_find_books"><span class="viewcode-link">[source]</span></a></dt>
+<dd><p>i hate assembler</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="test.TestUT.test_get_authors">
+<code class="descname">test_get_authors</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/test.html#TestUT.test_get_authors"><span class="viewcode-link">[source]</span></a></dt>
+<dd><p>Show must go on</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="test.TestUT.test_get_books">
+<code class="descname">test_get_books</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/test.html#TestUT.test_get_books"><span class="viewcode-link">[source]</span></a></dt>
+<dd><p>here is so many func to comment</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="test.TestUT.test_init">
+<code class="descname">test_init</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/test.html#TestUT.test_init"><span class="viewcode-link">[source]</span></a></dt>
+<dd><p>initialization</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-dbClasses">
+<span id="classes"></span><h1>Classes</h1>
+<p>Classes</p>
+<dl class="class">
+<dt id="dbClasses.Author">
+<em class="property">class </em><code class="descclassname">dbClasses.</code><code class="descname">Author</code><span class="sig-paren">(</span><em>id_author</em>, <em>fname</em>, <em>lname</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dbClasses.html#Author"><span class="viewcode-link">[source]</span></a></dt>
+<dd><p>class Author</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="dbClasses.Book">
+<em class="property">class </em><code class="descclassname">dbClasses.</code><code class="descname">Book</code><span class="sig-paren">(</span><em>id_book</em>, <em>name</em>, <em>id_author</em>, <em>id_genre</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dbClasses.html#Book"><span class="viewcode-link">[source]</span></a></dt>
+<dd><p>class book</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="dbClasses.Genre">
+<em class="property">class </em><code class="descclassname">dbClasses.</code><code class="descname">Genre</code><span class="sig-paren">(</span><em>id_genre</em>, <em>name</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dbClasses.html#Genre"><span class="viewcode-link">[source]</span></a></dt>
+<dd><p>class ganre</p>
 </dd></dl>
 
 </div>

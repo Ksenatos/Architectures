@@ -64,16 +64,16 @@
 
         <span class="bp">self</span><span class="o">.</span><span class="n">view</span> <span class="o">=</span> <span class="n">View</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">mydb</span> <span class="o">=</span> <span class="n">DB</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">choices</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">show_books</span><span class="p">,</span>
-                        <span class="mi">2</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">show_authors</span><span class="p">,</span>
-                        <span class="mi">3</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">add_book</span><span class="p">,</span>
-                        <span class="mi">4</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">add_author</span><span class="p">,</span>
-                        <span class="mi">5</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">add_genre</span><span class="p">,</span>
-                        <span class="mi">6</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">delete_book_by_name</span><span class="p">,</span>
-                        <span class="mi">7</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">delete_book_by_id</span><span class="p">,</span>
-                        <span class="mi">8</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">find_books</span><span class="p">,</span>
-                        <span class="mi">9</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">find_author</span><span class="p">,</span>
-                        <span class="mi">10</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">quit</span><span class="p">}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">choices</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;1&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">show_books</span><span class="p">,</span>
+                        <span class="s2">&quot;2&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">show_authors</span><span class="p">,</span>
+                        <span class="s2">&quot;3&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">add_book</span><span class="p">,</span>
+                        <span class="s2">&quot;4&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">add_author</span><span class="p">,</span>
+                        <span class="s2">&quot;5&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">add_genre</span><span class="p">,</span>
+                        <span class="s2">&quot;6&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">delete_book_by_name</span><span class="p">,</span>
+                        <span class="s2">&quot;7&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">delete_book_by_id</span><span class="p">,</span>
+                        <span class="s2">&quot;8&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">find_books</span><span class="p">,</span>
+                        <span class="s2">&quot;9&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">find_author</span><span class="p">,</span>
+                        <span class="s2">&quot;10&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">quit</span><span class="p">}</span>
 
 <div class="viewcode-block" id="Controller.run"><a class="viewcode-back" href="../index.html#controller.Controller.run">[docs]</a>    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;func run show menu on a display.</span>
@@ -82,12 +82,12 @@
 
         <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="n">display_menu</span><span class="p">()</span>
-            <span class="n">choices</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Enter an option: &quot;</span><span class="p">)</span>
-            <span class="n">action</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">choices</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">choices</span><span class="p">)</span>
+            <span class="n">choice</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Enter an option: &quot;</span><span class="p">)</span>
+            <span class="n">action</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">choices</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">choice</span><span class="p">)</span>
             <span class="k">if</span> <span class="n">action</span><span class="p">:</span>
                 <span class="n">action</span><span class="p">()</span>
             <span class="k">else</span><span class="p">:</span>
-                <span class="k">print</span><span class="p">(</span><span class="s2">&quot;{0} is not a valid choice&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">choices</span><span class="p">))</span></div>
+                <span class="k">print</span><span class="p">(</span><span class="s2">&quot;{0} is not a valid choice&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">choice</span><span class="p">))</span></div>
 
 <div class="viewcode-block" id="Controller.show_books"><a class="viewcode-back" href="../index.html#controller.Controller.show_books">[docs]</a>    <span class="k">def</span> <span class="nf">show_books</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;func show_books get list of books.</span>
@@ -96,7 +96,7 @@
 
         <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">mydb</span><span class="o">.</span><span class="n">get_books</span><span class="p">():</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="n">print_smth</span><span class="p">(</span><span class="s2">&quot;Book name: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">i</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">])</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="n">print_smth</span><span class="p">(</span><span class="s2">&quot;Author: </span><span class="si">%s</span><span class="s2"> </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">i</span><span class="p">[</span><span class="s2">&quot;FNAME&quot;</span><span class="p">],</span> <span class="n">i</span><span class="p">[</span><span class="s2">&quot;LNAME&quot;</span><span class="p">]))</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="n">print_smth</span><span class="p">(</span><span class="s2">&quot;Author: </span><span class="si">%s</span><span class="s2"> </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">i</span><span class="p">[</span><span class="s2">&quot;fname&quot;</span><span class="p">],</span> <span class="n">i</span><span class="p">[</span><span class="s2">&quot;lname&quot;</span><span class="p">]))</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="n">print_smth</span><span class="p">(</span><span class="s2">&quot;Genre: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">i</span><span class="p">[</span><span class="s2">&quot;g.name&quot;</span><span class="p">])</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="n">print_smth</span><span class="p">(</span><span class="s2">&quot;--------------------------------&quot;</span><span class="p">)</span></div>
 
@@ -120,7 +120,7 @@
 
 <div class="viewcode-block" id="Controller.add_author"><a class="viewcode-back" href="../index.html#controller.Controller.add_author">[docs]</a>    <span class="k">def</span> <span class="nf">add_author</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;func add_author add author in table author.</span>
-<span class="sd">         vars authors_name, authors_lastname and authors_age input by user.</span>
+<span class="sd">         vars authors_name, authors lastname and authors_age input by user.</span>
 <span class="sd">        This func call func add_author from class mydb in model.py&quot;&quot;&quot;</span>
 
         <span class="n">authors_name</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s1">&#39;Enter authors name: &#39;</span><span class="p">)</span>

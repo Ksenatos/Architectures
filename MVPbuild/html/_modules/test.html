@@ -1,0 +1,203 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>test &mdash; ARClab1 1 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="ARClab1 1 documentation" href="../index.html" />
+    <link rel="up" title="Module code" href="index.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">ARClab1 1 documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Module code</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for test</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;Test&quot;&quot;&quot;</span>
+<span class="kn">import</span> <span class="nn">unittest</span>
+<span class="c1">#import mock</span>
+<span class="kn">from</span> <span class="nn">mock</span> <span class="kn">import</span> <span class="n">Mock</span>
+<span class="kn">from</span> <span class="nn">dbClasses</span> <span class="kn">import</span> <span class="n">Book</span>
+<span class="kn">from</span> <span class="nn">dbClasses</span> <span class="kn">import</span> <span class="n">Genre</span>
+<span class="c1">#import sys</span>
+<span class="c1">#sys.path.insert(0, &quot;C:\users\Vlad\PycharmProjects\untitled\ &quot;) путь к моделе</span>
+<span class="c1">#import model</span>
+<span class="kn">from</span> <span class="nn">model</span> <span class="kn">import</span> <span class="n">DB</span>
+<span class="kn">from</span> <span class="nn">mock</span> <span class="kn">import</span> <span class="n">patch</span>
+<span class="kn">from</span> <span class="nn">unittest.mock</span> <span class="kn">import</span> <span class="n">create_autospec</span>
+
+<span class="n">__author__</span> <span class="o">=</span> <span class="s1">&#39;Vlad&#39;</span>
+
+
+<span class="n">testdb</span> <span class="o">=</span> <span class="n">DB</span><span class="p">()</span>
+
+
+<div class="viewcode-block" id="TestUT"><a class="viewcode-back" href="../index.html#test.TestUT">[docs]</a><span class="k">class</span> <span class="nc">TestUT</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;class test&quot;&quot;&quot;</span>
+<div class="viewcode-block" id="TestUT.test_init"><a class="viewcode-back" href="../index.html#test.TestUT.test_init">[docs]</a>    <span class="k">def</span> <span class="nf">test_init</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;initialization&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertIsNone</span><span class="p">(</span><span class="n">testdb</span><span class="o">.</span><span class="n">connect</span><span class="p">())</span></div>
+
+<div class="viewcode-block" id="TestUT.test_conect"><a class="viewcode-back" href="../index.html#test.TestUT.test_conect">[docs]</a>    <span class="k">def</span> <span class="nf">test_conect</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; im to tired&quot;&quot;&quot;</span>
+        <span class="k">with</span> <span class="n">patch</span><span class="p">(</span><span class="s1">&#39;model.DB.connect&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">perm_mock</span><span class="p">:</span>
+
+
+         <span class="bp">self</span><span class="o">.</span><span class="n">assertTrue</span><span class="p">(</span><span class="n">perm_mock</span><span class="p">(</span><span class="s1">&#39;127.0.0.1&#39;</span><span class="p">,</span> <span class="s1">&#39;root&#39;</span><span class="p">,</span> <span class="s1">&#39;1111&#39;</span><span class="p">,</span> <span class="s1">&#39;library&#39;</span><span class="p">))</span></div>
+
+
+<div class="viewcode-block" id="TestUT.test_add_authors"><a class="viewcode-back" href="../index.html#test.TestUT.test_add_authors">[docs]</a>    <span class="k">def</span> <span class="nf">test_add_authors</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;I run out of imagination to write this comments&quot;&quot;&quot;</span>
+        <span class="k">with</span> <span class="n">patch</span><span class="p">(</span><span class="s1">&#39;model.DB.add_author&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">perm_mock</span><span class="p">:</span>
+
+         <span class="n">perm_mock</span><span class="p">(</span><span class="s1">&#39;Als&#39;</span><span class="p">,</span> <span class="s1">&#39;Pehov&#39;</span><span class="p">)</span>
+         <span class="n">perm_mock</span><span class="o">.</span><span class="n">assert_called_once_with</span><span class="p">(</span><span class="s1">&#39;Als&#39;</span><span class="p">,</span> <span class="s1">&#39;Pehov&#39;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="TestUT.test_add_book"><a class="viewcode-back" href="../index.html#test.TestUT.test_add_book">[docs]</a>    <span class="k">def</span> <span class="nf">test_add_book</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;I had a very long lay&quot;&quot;&quot;</span>
+        <span class="k">with</span> <span class="n">patch</span><span class="p">(</span><span class="s1">&#39;model.DB.add_book&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">perm_mock</span><span class="p">:</span>
+
+         <span class="n">perm_mock</span><span class="p">(</span><span class="s1">&#39;Straj&#39;</span><span class="p">,</span> <span class="s1">&#39;1&#39;</span><span class="p">,</span> <span class="s1">&#39;2&#39;</span><span class="p">)</span>
+         <span class="n">perm_mock</span><span class="o">.</span><span class="n">assert_called_with</span><span class="p">(</span><span class="s1">&#39;Straj&#39;</span><span class="p">,</span> <span class="s1">&#39;1&#39;</span><span class="p">,</span> <span class="s1">&#39;2&#39;</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="TestUT.test_get_authors"><a class="viewcode-back" href="../index.html#test.TestUT.test_get_authors">[docs]</a>    <span class="k">def</span> <span class="nf">test_get_authors</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Show must go on&quot;&quot;&quot;</span>
+        <span class="k">with</span> <span class="n">patch</span><span class="p">(</span><span class="s1">&#39;model.DB.get_authors&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">perm_mock</span><span class="p">:</span>
+         <span class="n">mock_function</span> <span class="o">=</span> <span class="n">create_autospec</span><span class="p">(</span><span class="n">perm_mock</span><span class="p">,</span> <span class="n">return_value</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s1">&#39;lname&#39;</span><span class="p">])</span>
+         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">([</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s1">&#39;lname&#39;</span><span class="p">],</span> <span class="n">mock_function</span><span class="p">())</span></div>
+
+<div class="viewcode-block" id="TestUT.test_get_books"><a class="viewcode-back" href="../index.html#test.TestUT.test_get_books">[docs]</a>    <span class="k">def</span> <span class="nf">test_get_books</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;here is so many func to comment&quot;&quot;&quot;</span>
+        <span class="k">with</span> <span class="n">patch</span><span class="p">(</span><span class="s1">&#39;model.DB.get_books&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">perm_mock</span><span class="p">:</span>
+         <span class="n">mock_function</span> <span class="o">=</span> <span class="n">create_autospec</span><span class="p">(</span><span class="n">perm_mock</span><span class="p">,</span> <span class="n">return_value</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s1">&#39;author&#39;</span><span class="p">,</span> <span class="s1">&#39;genre&#39;</span><span class="p">])</span>
+         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">([</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s1">&#39;author&#39;</span><span class="p">,</span> <span class="s1">&#39;genre&#39;</span><span class="p">],</span> <span class="n">mock_function</span><span class="p">())</span></div>
+
+
+
+<div class="viewcode-block" id="TestUT.test_add_genre"><a class="viewcode-back" href="../index.html#test.TestUT.test_add_genre">[docs]</a>    <span class="k">def</span> <span class="nf">test_add_genre</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;AAAAAAAAAAAA_AAA__AAA&quot;&quot;&quot;</span>
+        <span class="k">with</span> <span class="n">patch</span><span class="p">(</span><span class="s1">&#39;model.DB.add_genre&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">perm_mock</span><span class="p">:</span>
+
+         <span class="n">perm_mock</span><span class="p">(</span><span class="s1">&#39;Fantasy&#39;</span><span class="p">)</span>
+         <span class="n">perm_mock</span><span class="o">.</span><span class="n">assert_called_with</span><span class="p">(</span><span class="s1">&#39;Fantasy&#39;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="TestUT.test_find_author"><a class="viewcode-back" href="../index.html#test.TestUT.test_find_author">[docs]</a>    <span class="k">def</span> <span class="nf">test_find_author</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;why do we need so many functions..?&quot;&quot;&quot;</span>
+        <span class="k">with</span> <span class="n">patch</span><span class="p">(</span><span class="s1">&#39;model.DB.find_author&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">perm_mock</span><span class="p">:</span>
+
+         <span class="n">perm_mock</span> <span class="o">=</span> <span class="n">Mock</span><span class="p">(</span><span class="n">return_value</span><span class="o">=</span><span class="bp">None</span><span class="p">)</span>
+         <span class="n">perm_mock</span><span class="p">(</span><span class="s1">&#39;firstAuthor&#39;</span><span class="p">)</span>
+         <span class="n">perm_mock</span><span class="p">(</span><span class="s1">&#39;secondAuthor&#39;</span><span class="p">)</span>
+         <span class="n">perm_mock</span><span class="p">(</span><span class="s1">&#39;thirdAuthor&#39;</span><span class="p">)</span>
+         <span class="n">perm_mock</span><span class="o">.</span><span class="n">assert_any_call</span><span class="p">(</span><span class="s1">&#39;secondAuthor&#39;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="TestUT.test_find_books"><a class="viewcode-back" href="../index.html#test.TestUT.test_find_books">[docs]</a>    <span class="k">def</span> <span class="nf">test_find_books</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;i hate assembler&quot;&quot;&quot;</span>
+        <span class="k">with</span> <span class="n">patch</span><span class="p">(</span><span class="s1">&#39;model.DB.find_author&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">perm_mock</span><span class="p">:</span>
+
+         <span class="n">perm_mock</span> <span class="o">=</span> <span class="n">Mock</span><span class="p">(</span><span class="n">return_value</span><span class="o">=</span><span class="bp">None</span><span class="p">)</span>
+         <span class="n">perm_mock</span><span class="p">(</span><span class="s1">&#39;firstBook&#39;</span><span class="p">)</span>
+         <span class="n">perm_mock</span><span class="p">(</span><span class="s1">&#39;secondBook&#39;</span><span class="p">)</span>
+         <span class="n">perm_mock</span><span class="p">(</span><span class="s1">&#39;thirdBook&#39;</span><span class="p">)</span>
+         <span class="n">perm_mock</span><span class="o">.</span><span class="n">assert_any_call</span><span class="p">(</span><span class="s1">&#39;thirdBook&#39;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="TestUT.test_delete_book"><a class="viewcode-back" href="../index.html#test.TestUT.test_delete_book">[docs]</a>    <span class="k">def</span> <span class="nf">test_delete_book</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;YYUUPA! the last one!&quot;&quot;&quot;</span>
+        <span class="k">with</span> <span class="n">patch</span><span class="p">(</span><span class="s1">&#39;model.DB.find_author&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">perm_mock</span><span class="p">:</span>
+
+         <span class="n">perm_mock</span> <span class="o">=</span> <span class="n">Mock</span><span class="p">(</span><span class="n">return_value</span><span class="o">=</span><span class="bp">None</span><span class="p">)</span>
+         <span class="n">perm_mock</span><span class="p">(</span><span class="s1">&#39;firstBook&#39;</span><span class="p">)</span>
+         <span class="n">perm_mock</span><span class="p">(</span><span class="s1">&#39;secondBook&#39;</span><span class="p">)</span>
+         <span class="n">perm_mock</span><span class="p">(</span><span class="s1">&#39;thirdBook&#39;</span><span class="p">)</span>
+         <span class="n">perm_mock</span><span class="o">.</span><span class="n">assert_any_call</span><span class="p">(</span><span class="s1">&#39;secondBook&#39;</span><span class="p">)</span></div></div>
+
+
+
+
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">unittest</span><span class="o">.</span><span class="n">main</span><span class="p">()</span>
+
+
+
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">ARClab1 1 documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >Module code</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2016, Michael Vlad Paul.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.6.
+    </div>
+  </body>
+</html>
