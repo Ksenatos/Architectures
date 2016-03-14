@@ -10,25 +10,12 @@ __author__ = 'Michael'
 class DB(object):
     """data base"""
     def __init__(self):
-        """initialization
-
-        >>> __init__(mdb)
-        mdb.connection == None
-
-        >>> __init__(None)
-        Traceback (most recent call last):
-        Initialization error: initialization is failed
-        """
+        """initialization """
         self.connection = None
 
     def connect(self):
         """func connect provide connection between, database
          witch was created in MySQL server, and object mdb
-
-        >>> mdb.connection() is None
-        Traceback (most recent call last):
-        connection error: connection is failed
-
         """
         if self.connection is not None:
             return
@@ -45,11 +32,6 @@ class DB(object):
 
     def close(self):
         """Disconnect database and object mdb
-
-        >>> mdb.connection is None
-        Traceback (most recent call last):
-        Connection error: already disconnect
-
         """
         if self.connection is not None:
             self.connection.close()
@@ -57,14 +39,7 @@ class DB(object):
 
     def get_authors(self):
         """func get_authors get list of authors from table author,
-         if connection was successfull
-
-         >>> mdb.connection() is None
-         Traceback (most recent call last):
-         connection error: connection is failed
-
-
-         """
+         if connection was successfull   """
 
         self.connect()
         if self.connection is None:
@@ -77,10 +52,6 @@ class DB(object):
     def get_books(self):
         """func get_books get list of books from table books,
         if connection was successfull
-
-        >>> mdb.connection() is None
-        Traceback (most recent call last):
-        connection error: connection is failed
         """
         self.connect()
         if self.connection is None:
@@ -94,12 +65,7 @@ class DB(object):
         return cur.fetchall()
 
     def add_author(self, fname, lname):
-        """func add_author add new author in table authors
-
-        >>> add_author(mdb, 'Karl', 'JJ')
-        ['Karl', 'JJ']
-
-        """
+        """func add_author add new author in table author """
         self.connect()
         cur = self.connection.cursor(mdb.cursors.DictCursor)
         cur.execute("INSERT INTO author VALUES "
@@ -128,12 +94,7 @@ class DB(object):
 
     def delete_book_by_name(self, name):
         """func delete_book_by_name delete book, from table books,
-        which name was entered
-
-        >>> delete_book_by_name(mdb,'Straj')
-        Traceback (most recent call last):
-        Error: unpredictable result
-        """
+        which name was entered  """
         self.connect()
         cur = self.connection.cursor(mdb.cursors.DictCursor)
         cur.execute("DELETE FROM book WHERE "
@@ -144,10 +105,6 @@ class DB(object):
     def delete_book_by_id(self, id_book):
         """func delete_book_by_id delete book, from table books,
         which Id was entered
-
-        >>> delete_book_by_id(mdb, '1')
-        Traceback (most recent call last):
-        Error: unpredictable result
         """
         self.connect()
         cur = self.connection.cursor(mdb.cursors.DictCursor)
@@ -159,15 +116,6 @@ class DB(object):
     def find_books(self, name):
         """func find_books are looking the book in table books,
         which name was entered
-
-        >>> mdb.connection() is None
-        Traceback (most recent call last):
-        connection error: connection is failed
-
-        >>> find_books(mdb,'Straj')
-        Traceback (most recent call last):
-        Error: unpredictable result
-
         """
         self.connect()
         symbol = '%'
@@ -182,14 +130,6 @@ class DB(object):
     def find_author(self, name):
         """func find_author are looking the author in table authors,
         whose name was entered
-
-        >>> mdb.connection() is None
-        Traceback (most recent call last):
-        connection error: connection is failed
-
-        >>> find_author(mdb, 'Pehov')
-        Traceback (most recent call last):
-        Error: unpredictable result
         """
         self.connect()
         symbol = '%'
