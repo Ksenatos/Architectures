@@ -24,20 +24,24 @@ View
 .. automodule:: view
    :members:
 
-Test
+Pickle
 ======
 
-.. automodule:: test
+.. automodule:: serialPickle
    :members:
 
 
-Classes
+JSON
 ========
 
-.. automodule:: dbClasses
+.. automodule:: serialJSON
    :members:
 
+YAML
+========
 
+.. automodule:: serialYaml
+   :members:
 
 Indices and tables
 ==================

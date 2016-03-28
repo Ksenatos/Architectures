@@ -51,9 +51,32 @@
 <span></span><span class="sd">&quot;&quot;&quot;controller module&quot;&quot;&quot;</span>
 <span class="kn">from</span> <span class="nn">model</span> <span class="kn">import</span> <span class="n">DB</span>
 <span class="kn">from</span> <span class="nn">view</span> <span class="kn">import</span> <span class="n">View</span>
+<span class="kn">import</span> <span class="nn">configparser</span>
 <span class="c1"># import coverage</span>
 
 <span class="n">__author__</span> <span class="o">=</span> <span class="s1">&#39;paul&#39;</span>
+<span class="sd">&#39;&#39;&#39;Using config to choose the serialization type&#39;&#39;&#39;</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">config</span> <span class="o">=</span> <span class="n">configparser</span><span class="o">.</span><span class="n">ConfigParser</span><span class="p">()</span>
+    <span class="n">config</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="s1">&#39;files/config.py&#39;</span><span class="p">)</span>
+<span class="k">except</span> <span class="n">configparser</span><span class="o">.</span><span class="n">ParsingError</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="s1">&#39;could not parse&#39;</span><span class="p">)</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">option</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;ModelFile&#39;</span><span class="p">,</span> <span class="s1">&#39;ModelType&#39;</span><span class="p">)</span>
+<span class="k">except</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="s2">&quot;exception on </span><span class="si">%s</span><span class="s2">!&quot;</span> <span class="o">%</span> <span class="n">option</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="n">option</span> <span class="o">==</span> <span class="s1">&#39;pickle&#39;</span><span class="p">:</span>
+    <span class="kn">from</span> <span class="nn">serialPickle</span> <span class="kn">import</span> <span class="n">serialization</span>
+    <span class="kn">from</span> <span class="nn">serialPickle</span> <span class="kn">import</span> <span class="n">deserialization</span>
+<span class="k">elif</span> <span class="n">option</span> <span class="o">==</span> <span class="s1">&#39;json&#39;</span><span class="p">:</span>
+    <span class="kn">from</span> <span class="nn">serialJSON</span> <span class="kn">import</span> <span class="n">serialization</span>
+    <span class="kn">from</span> <span class="nn">serialJSON</span> <span class="kn">import</span> <span class="n">deserialization</span>
+<span class="k">elif</span> <span class="n">option</span> <span class="o">==</span> <span class="s1">&#39;yaml&#39;</span><span class="p">:</span>
+    <span class="kn">from</span> <span class="nn">serialYaml</span> <span class="kn">import</span> <span class="n">serialization</span>
+    <span class="kn">from</span> <span class="nn">serialYaml</span> <span class="kn">import</span> <span class="n">deserialization</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="s1">&#39;&lt;files/config.py&gt;% wrong option&#39;</span><span class="p">)</span>
 
 
 <div class="viewcode-block" id="Controller"><a class="viewcode-back" href="../index.html#controller.Controller">[docs]</a><span class="k">class</span> <span class="nc">Controller</span><span class="p">:</span>
@@ -73,7 +96,8 @@
                         <span class="s2">&quot;7&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">delete_book_by_id</span><span class="p">,</span>
                         <span class="s2">&quot;8&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">find_books</span><span class="p">,</span>
                         <span class="s2">&quot;9&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">find_author</span><span class="p">,</span>
-                        <span class="s2">&quot;10&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">quit</span><span class="p">}</span>
+                        <span class="s2">&quot;10&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">quit</span>
+                        <span class="p">}</span>
 
 <div class="viewcode-block" id="Controller.run"><a class="viewcode-back" href="../index.html#controller.Controller.run">[docs]</a>    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;func run show menu on a display.</span>
@@ -89,7 +113,8 @@
             <span class="k">else</span><span class="p">:</span>
                 <span class="k">print</span><span class="p">(</span><span class="s2">&quot;{0} is not a valid choice&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">choice</span><span class="p">))</span></div>
 
-<div class="viewcode-block" id="Controller.show_books"><a class="viewcode-back" href="../index.html#controller.Controller.show_books">[docs]</a>    <span class="k">def</span> <span class="nf">show_books</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="nd">@serialization</span>
+    <span class="k">def</span> <span class="nf">show_books</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;func show_books get list of books.</span>
 <span class="sd">        This func call func get_books from class my.db in model.py.</span>
 <span class="sd">         Variable i goes across row in table books&quot;&quot;&quot;</span>
@@ -98,17 +123,19 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="n">print_smth</span><span class="p">(</span><span class="s2">&quot;Book name: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">i</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">])</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="n">print_smth</span><span class="p">(</span><span class="s2">&quot;Author: </span><span class="si">%s</span><span class="s2"> </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">i</span><span class="p">[</span><span class="s2">&quot;fname&quot;</span><span class="p">],</span> <span class="n">i</span><span class="p">[</span><span class="s2">&quot;lname&quot;</span><span class="p">]))</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="n">print_smth</span><span class="p">(</span><span class="s2">&quot;Genre: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">i</span><span class="p">[</span><span class="s2">&quot;g.name&quot;</span><span class="p">])</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="n">print_smth</span><span class="p">(</span><span class="s2">&quot;--------------------------------&quot;</span><span class="p">)</span></div>
+            <span class="bp">self</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="n">print_smth</span><span class="p">(</span><span class="s2">&quot;--------------------------------&quot;</span><span class="p">)</span>
 
-<div class="viewcode-block" id="Controller.show_authors"><a class="viewcode-back" href="../index.html#controller.Controller.show_authors">[docs]</a>    <span class="k">def</span> <span class="nf">show_authors</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="nd">@serialization</span>
+    <span class="k">def</span> <span class="nf">show_authors</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;func show_authors get list of authors.</span>
 <span class="sd">        This func call func get_authors from class mydb in model.py.</span>
 <span class="sd">         Variable i goes across row in table author&quot;&quot;&quot;</span>
-
+        <span class="k">print</span><span class="p">(</span><span class="bp">True</span><span class="p">)</span>
         <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">mydb</span><span class="o">.</span><span class="n">get_authors</span><span class="p">():</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="n">print_smth</span><span class="p">(</span><span class="s2">&quot;Author: </span><span class="si">%s</span><span class="s2"> </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">i</span><span class="p">[</span><span class="s2">&quot;FNAME&quot;</span><span class="p">],</span> <span class="n">i</span><span class="p">[</span><span class="s2">&quot;LNAME&quot;</span><span class="p">]))</span></div>
+            <span class="bp">self</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="n">print_smth</span><span class="p">(</span><span class="s2">&quot;Author: </span><span class="si">%s</span><span class="s2"> </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">i</span><span class="p">[</span><span class="s2">&quot;FNAME&quot;</span><span class="p">],</span> <span class="n">i</span><span class="p">[</span><span class="s2">&quot;LNAME&quot;</span><span class="p">]))</span>
 
-<div class="viewcode-block" id="Controller.add_book"><a class="viewcode-back" href="../index.html#controller.Controller.add_book">[docs]</a>    <span class="k">def</span> <span class="nf">add_book</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="nd">@serialization</span>
+    <span class="k">def</span> <span class="nf">add_book</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;func add_book add book in table book.</span>
 <span class="sd">        vars books_name and authors_id input by user.</span>
 <span class="sd">        This func call func add_book from class mydb in model.py&quot;&quot;&quot;</span>
@@ -116,9 +143,10 @@
         <span class="n">books_name</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s1">&#39;Enter books name: &#39;</span><span class="p">)</span>
         <span class="n">authors_id</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s1">&#39;Authors id: &#39;</span><span class="p">)</span>
         <span class="n">genre_id</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s1">&#39;Genre id: &#39;</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">mydb</span><span class="o">.</span><span class="n">add_book</span><span class="p">(</span><span class="n">books_name</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="n">authors_id</span><span class="p">),</span> <span class="nb">int</span><span class="p">(</span><span class="n">genre_id</span><span class="p">))</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mydb</span><span class="o">.</span><span class="n">add_book</span><span class="p">(</span><span class="n">books_name</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="n">authors_id</span><span class="p">),</span> <span class="nb">int</span><span class="p">(</span><span class="n">genre_id</span><span class="p">))</span>
 
-<div class="viewcode-block" id="Controller.add_author"><a class="viewcode-back" href="../index.html#controller.Controller.add_author">[docs]</a>    <span class="k">def</span> <span class="nf">add_author</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="nd">@serialization</span>
+    <span class="k">def</span> <span class="nf">add_author</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;func add_author add author in table author.</span>
 <span class="sd">         vars authors_name, authors lastname and authors_age input by user.</span>
 <span class="sd">        This func call func add_author from class mydb in model.py&quot;&quot;&quot;</span>
@@ -126,34 +154,39 @@
         <span class="n">authors_name</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s1">&#39;Enter authors name: &#39;</span><span class="p">)</span>
         <span class="n">authors_lastname</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s1">&#39;Enter authors last name: &#39;</span><span class="p">)</span>
         <span class="c1"># authors_age = input(&#39;Enter authors age: &#39;)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">mydb</span><span class="o">.</span><span class="n">add_author</span><span class="p">(</span><span class="n">authors_name</span><span class="p">,</span> <span class="n">authors_lastname</span><span class="p">)</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mydb</span><span class="o">.</span><span class="n">add_author</span><span class="p">(</span><span class="n">authors_name</span><span class="p">,</span> <span class="n">authors_lastname</span><span class="p">)</span>
 
-<div class="viewcode-block" id="Controller.add_genre"><a class="viewcode-back" href="../index.html#controller.Controller.add_genre">[docs]</a>    <span class="k">def</span> <span class="nf">add_genre</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="nd">@serialization</span>
+    <span class="k">def</span> <span class="nf">add_genre</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;func add genre in table genre. vars genre name input by user.</span>
 <span class="sd">        This func call func add_book from class mydb in model.py&quot;&quot;&quot;</span>
 
         <span class="n">genres_name</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s1">&#39;Enter a new genre: &#39;</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">mydb</span><span class="o">.</span><span class="n">add_genre</span><span class="p">(</span><span class="n">genres_name</span><span class="p">)</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mydb</span><span class="o">.</span><span class="n">add_genre</span><span class="p">(</span><span class="n">genres_name</span><span class="p">)</span>
 
-<div class="viewcode-block" id="Controller.delete_book_by_name"><a class="viewcode-back" href="../index.html#controller.Controller.delete_book_by_name">[docs]</a>    <span class="k">def</span> <span class="nf">delete_book_by_name</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="nd">@serialization</span>
+    <span class="k">def</span> <span class="nf">delete_book_by_name</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;func delete book in table books by name.&quot;&quot;&quot;</span>
         <span class="n">books_name</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s1">&#39;Enter books name: &#39;</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">mydb</span><span class="o">.</span><span class="n">delete_book_by_name</span><span class="p">(</span><span class="n">books_name</span><span class="p">)</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mydb</span><span class="o">.</span><span class="n">delete_book_by_name</span><span class="p">(</span><span class="n">books_name</span><span class="p">)</span>
 
-<div class="viewcode-block" id="Controller.delete_book_by_id"><a class="viewcode-back" href="../index.html#controller.Controller.delete_book_by_id">[docs]</a>    <span class="k">def</span> <span class="nf">delete_book_by_id</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="nd">@serialization</span>
+    <span class="k">def</span> <span class="nf">delete_book_by_id</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;func delete book in table books my Id&quot;&quot;&quot;</span>
         <span class="n">books_id</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s1">&#39;Enter books ID: &#39;</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">mydb</span><span class="o">.</span><span class="n">delete_book_by_id</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">books_id</span><span class="p">))</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mydb</span><span class="o">.</span><span class="n">delete_book_by_id</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">books_id</span><span class="p">))</span>
 
-<div class="viewcode-block" id="Controller.find_books"><a class="viewcode-back" href="../index.html#controller.Controller.find_books">[docs]</a>    <span class="k">def</span> <span class="nf">find_books</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="nd">@deserialization</span>
+    <span class="k">def</span> <span class="nf">find_books</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;func searching book by part of its name&quot;&quot;&quot;</span>
         <span class="n">books_name</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s1">&#39;Search: &#39;</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="n">print_smth</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mydb</span><span class="o">.</span><span class="n">find_books</span><span class="p">(</span><span class="n">books_name</span><span class="p">))</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="n">print_smth</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mydb</span><span class="o">.</span><span class="n">find_books</span><span class="p">(</span><span class="n">books_name</span><span class="p">))</span>
 
-<div class="viewcode-block" id="Controller.find_author"><a class="viewcode-back" href="../index.html#controller.Controller.find_author">[docs]</a>    <span class="k">def</span> <span class="nf">find_author</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="nd">@deserialization</span>
+    <span class="k">def</span> <span class="nf">find_author</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;ffunc searching book by part of his name&quot;&quot;&quot;</span>
         <span class="n">authors_name</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s1">&#39;Search: &#39;</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="n">print_smth</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mydb</span><span class="o">.</span><span class="n">find_author</span><span class="p">(</span><span class="n">authors_name</span><span class="p">))</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="n">print_smth</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mydb</span><span class="o">.</span><span class="n">find_author</span><span class="p">(</span><span class="n">authors_name</span><span class="p">))</span>
 
     <span class="nd">@staticmethod</span>
 <div class="viewcode-block" id="Controller.quit"><a class="viewcode-back" href="../index.html#controller.Controller.quit">[docs]</a>    <span class="k">def</span> <span class="nf">quit</span><span class="p">():</span>

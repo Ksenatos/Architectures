@@ -2,11 +2,10 @@
 from model import DB
 from view import View
 import configparser
-#import serialPickle as pickles
-#import serialJSON as jsons
 # import coverage
 
 __author__ = 'paul'
+'''Using config to choose the serialization type'''
 try:
     config = configparser.ConfigParser()
     config.read('files/config.py')
@@ -28,6 +27,7 @@ elif option == 'yaml':
     from serialYaml import deserialization
 else:
     print('<files/config.py>% wrong option')
+
 
 class Controller:
     """The controller """
@@ -63,8 +63,6 @@ class Controller:
             else:
                 print("{0} is not a valid choice".format(choice))
 
-
-    @deserialization
     @serialization
     def show_books(self):
         """func show_books get list of books.
@@ -76,6 +74,7 @@ class Controller:
             self.view.print_smth("Author: %s %s" % (i["fname"], i["lname"]))
             self.view.print_smth("Genre: %s" % i["g.name"])
             self.view.print_smth("--------------------------------")
+
     @serialization
     def show_authors(self):
         """func show_authors get list of authors.
@@ -126,33 +125,18 @@ class Controller:
         """func delete book in table books my Id"""
         books_id = input('Enter books ID: ')
         self.mydb.delete_book_by_id(int(books_id))
+
     @deserialization
     def find_books(self):
         """func searching book by part of its name"""
         books_name = input('Search: ')
         self.view.print_smth(self.mydb.find_books(books_name))
+
     @deserialization
     def find_author(self):
         """ffunc searching book by part of his name"""
         authors_name = input('Search: ')
         self.view.print_smth(self.mydb.find_author(authors_name))
-#   исправьте здесь методы
-
-    # def serializePickle(self):
-    #     pickles.makePickleSerialization()
-    #
-    # def deserializePickle(self):
-    #     lista, listb = pickles.getPickleDeserialize()
-    #     print(lista)
-    #     print(listb)
-    #
-    # def serializeJSON(self):
-    #     jsons.makeJSONSerialize()
-    #
-    # def deserializeJSON(self):
-    #     lista, listb = jsons.getJSONDeserialize()
-    #     print(lista)
-    #     print(listb)
 
     @staticmethod
     def quit():

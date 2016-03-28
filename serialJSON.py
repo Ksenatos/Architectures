@@ -1,65 +1,32 @@
-__author__ = 'Michael'
 import json
 from model import DB
 
-
-
-
+__author__ = 'Michael'
 
 
 def serialization(func):
-
+    """ decorator for JSON serialization """
     def wrapper(data):
         print('json s-on')
         mydb = DB()
-        listAuthors = mydb.get_authors()
-        listBooks = mydb.get_books()
-        listForSerialize = {'books': listBooks, 'authors': listAuthors}
+        list_authors = mydb.get_authors()
+        list_books = mydb.get_books()
+        list_for_serialize = {'books': list_books, 'authors': list_authors}
         with open('files/basic.json', mode='w', encoding='utf-8') as f:
-            json.dump(listForSerialize, f)
+            json.dump(list_for_serialize, f)
         func(data)
         return func
     return wrapper
 
 
 def deserialization(func):
-
+    """ decorator for JSON deserialization """
     def wrapper(data):
         print('json des-on')
         func(data)
         with open('files/basic.json', 'r', encoding='utf-8') as f:
             data = json.load(f)
-       #     print(data)
+        # print(data)
 
         return func
     return wrapper
-
-
-
-#
-# def makeJSONSerialize():
-#     mydb = DB()
-#     listAuthors = mydb.get_authors()
-#     listBooks = mydb.get_books()
-#
-#     listForSerialize = {'books': listBooks, 'authors': listAuthors}
-#
-#     with open('files/basic.json', mode='w', encoding='utf-8') as f:
-#         json.dump(listForSerialize, f)
-#
-# def getJSONDeserialize():
-#     with open('files/basic.json', 'r', encoding='utf-8') as f:
-#         data = json.load(f)
-#
-#     listBooks = data['books']
-#     listAuthors = data['authors']
-#
-#     return listBooks, listAuthors
-
-# example
-
-# makeJSONSerialize()
-#
-# lista, listb = getJSONDeserialize()
-# print(lista)
-# print(listb)

@@ -1,58 +1,29 @@
-__author__ = 'Michael'
 from model import DB
 import pickle
 
+__author__ = 'Michael'
+
 
 def serialization(func):
-
+    """ decorator for Pickle serialization """
     def wrapper(data):
         mydb = DB()
-        listAuthors = mydb.get_authors()
-        listBooks = mydb.get_books()
-        listForSerialize = {'books': listBooks, 'authors': listAuthors}
+        list_authors = mydb.get_authors()
+        list_books = mydb.get_books()
+        list_for_serialize = {'books': list_books, 'authors': list_authors}
         with open('files/data.pickle', 'wb') as f:
-            pickle.dump(listForSerialize, f)
+            pickle.dump(list_for_serialize, f)
         func(data)
+        """the func"""
         return func
     return wrapper
 
 
 def deserialization(func):
-
+    """ decorator for Pickle deserialization """
     def wrapper(data):
         func(data)
         with open('files/data.pickle', 'rb') as f:
             data = pickle.load(f)
-
-        return func
+            return func
     return wrapper
-
-# def makePickleSerialization():
-#     mydb = DB()
-#     listAuthors = mydb.get_authors()
-#     listBooks = mydb.get_books()
-#
-#     listForSerialize = {'books': listBooks, 'authors': listAuthors}
-#     with open('files/data.pickle', 'wb') as f:
-#         pickle.dump(listForSerialize, f)
-#
-#
-# def getPickleDeserialize():
-#     with open('files/data.pickle', 'rb') as f:
-#         data = pickle.load(f)
-#
-#     listBooks = data['books']
-#     listAuthors = data['authors']
-#
-#     return listBooks, listAuthors
-
-
-#   example
-
-# makePickleSerialization()
-#
-# lista, listb = getPickleDeserialize()
-#
-# print(lista)
-# print(listb)
-

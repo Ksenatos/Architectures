@@ -1,24 +1,26 @@
-import pyaml
-import yaml
+# import pyaml
+# import yaml
 from model import DB
 
 __author__ = 'Michael'
 
-def serialization(func):
 
+def serialization(func):
+    """ decorator for Yaml serialization """
     def wrapper(data):
         mydb = DB()
-        listAuthors = mydb.get_authors()
-        listBooks = mydb.get_books()
-        listForSerialize = {'books': listBooks, 'authors': listAuthors}
+        list_authors = mydb.get_authors()
+        list_books = mydb.get_books()
+        list_for_serialize = {'books': list_books, 'authors': list_authors}
         with open('files/data.yml', 'wb') as f:
-             pyaml.dump(listForSerialize, f)
+            pyaml.dump(list_for_serialize, f)
         func(data)
         return func
     return wrapper
 
-def deserialization(func):
 
+def deserialization(func):
+    """ decorator for Yaml deserialization """
     def wrapper(data):
         func(data)
         with open('files/data.yml', 'rb') as f:
@@ -26,34 +28,3 @@ def deserialization(func):
 
         return func
     return wrapper
-
-
-
-
-
-
-
-# def makeYamlSerialization():
-#     mydb = DB()
-#     listAuthors = mydb.get_authors()
-#     listBooks = mydb.get_books()
-#
-#     listForSerialize = {'books': listBooks, 'authors': listAuthors}
-#     with open('files/data.yml', 'wb') as f:
-#         pyaml.dump(listForSerialize, f)
-#
-#
-# def getYamlDeserialize():
-#     with open('files/data.yml', 'rb') as f:
-#         data = yaml.load(f)
-#
-#     listBooks = data['books']
-#     listAuthors = data['authors']
-#
-#     return listBooks, listAuthors
-
-# makeYamlSerialization()
-#
-# data1, data2 = getYamlDeserialize()
-# print(data1)
-# print(data2)
