@@ -1,0 +1,165 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>iostr &mdash; ARClab1 1 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="ARClab1 1 documentation" href="../index.html" />
+    <link rel="up" title="Module code" href="index.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">ARClab1 1 documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Module code</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for iostr</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">io</span> <span class="kn">import</span> <span class="n">StringIO</span>
+<span class="kn">import</span> <span class="nn">unittest</span>
+<span class="kn">import</span> <span class="nn">serialJSON</span>
+<span class="kn">import</span> <span class="nn">serialPickle</span>
+<span class="kn">import</span> <span class="nn">serialYaml</span>
+
+
+
+<div class="viewcode-block" id="TestSer"><a class="viewcode-back" href="../index.html#iostr.TestSer">[docs]</a><span class="k">class</span> <span class="nc">TestSer</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;VLADIK, class toge nado commentity&quot;&quot;&quot;</span>
+<div class="viewcode-block" id="TestSer.test_SerJason"><a class="viewcode-back" href="../index.html#iostr.TestSer.test_SerJason">[docs]</a>    <span class="k">def</span> <span class="nf">test_SerJason</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;test function for Json serial &quot;&quot;&quot;</span>
+        <span class="n">serialJSON</span><span class="o">.</span><span class="n">serialization</span>
+        <span class="n">f1</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;files/basic.json&#39;</span><span class="p">)</span>
+        <span class="n">s1</span> <span class="o">=</span> <span class="n">f1</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+        <span class="n">f</span> <span class="o">=</span> <span class="n">StringIO</span><span class="p">(</span><span class="n">s1</span><span class="p">)</span>
+        <span class="n">s2</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">getvalue</span><span class="p">()</span>
+        <span class="c1">#print (s2)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">s2</span><span class="p">,</span> <span class="n">s1</span><span class="p">)</span>
+        <span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="TestSer.test_PickSer"><a class="viewcode-back" href="../index.html#iostr.TestSer.test_PickSer">[docs]</a>    <span class="k">def</span> <span class="nf">test_PickSer</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+         <span class="sd">&quot;&quot;&quot;test function for pickle serial &quot;&quot;&quot;</span>
+         <span class="n">serialPickle</span><span class="o">.</span><span class="n">serialization</span>
+         <span class="n">f1</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;files/data.pickle&#39;</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span>
+         <span class="n">s1</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">f1</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
+         <span class="n">f</span> <span class="o">=</span> <span class="n">StringIO</span><span class="p">(</span><span class="n">s1</span><span class="p">)</span>
+         <span class="n">s2</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">getvalue</span><span class="p">()</span>
+         <span class="c1">#print (s2)</span>
+         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">s2</span><span class="p">,</span> <span class="n">s1</span><span class="p">)</span>
+         <span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="TestSer.test_JsonDes"><a class="viewcode-back" href="../index.html#iostr.TestSer.test_JsonDes">[docs]</a>    <span class="k">def</span> <span class="nf">test_JsonDes</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+         <span class="sd">&quot;&quot;&quot;test function for Json deserial &quot;&quot;&quot;</span>
+         <span class="n">s1</span><span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">serialJSON</span><span class="o">.</span><span class="n">deserialization</span><span class="p">)</span>
+         <span class="n">f</span> <span class="o">=</span> <span class="n">StringIO</span><span class="p">(</span><span class="n">s1</span><span class="p">)</span>
+         <span class="n">s2</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">getvalue</span><span class="p">()</span>
+         <span class="bp">self</span><span class="o">.</span><span class="n">assertRaisesRegex</span><span class="p">(</span><span class="ne">ValueError</span><span class="p">,</span> <span class="s1">&#39;Always different adress&#39;</span><span class="p">)</span>
+         <span class="c1">#self.assertIn({&quot;g.name&quot;: &quot;drama&quot;, &quot;lname&quot;: &quot;Stark&quot;, &quot;name&quot;: &quot;Hamlet&quot;, &quot;fname&quot;: &quot;Tony&quot;}, serialJSON.deserialization)</span>
+         <span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="TestSer.test_PickDes"><a class="viewcode-back" href="../index.html#iostr.TestSer.test_PickDes">[docs]</a>    <span class="k">def</span> <span class="nf">test_PickDes</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+      <span class="sd">&quot;&quot;&quot;test function for pick deserial &quot;&quot;&quot;</span>
+      <span class="n">stroka</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">serialPickle</span><span class="o">.</span><span class="n">deserialization</span><span class="p">)</span>
+      <span class="n">f</span> <span class="o">=</span> <span class="n">StringIO</span><span class="p">(</span><span class="n">stroka</span><span class="p">)</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">f</span><span class="o">.</span><span class="n">tell</span><span class="p">())</span>
+      <span class="n">f</span><span class="o">.</span><span class="n">seek</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">assertIsNot</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">5</span><span class="p">),</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span>
+      <span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="TestSer.test_SerYaml"><a class="viewcode-back" href="../index.html#iostr.TestSer.test_SerYaml">[docs]</a>    <span class="k">def</span> <span class="nf">test_SerYaml</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+         <span class="sd">&quot;&quot;&quot;test function for yamal serial &quot;&quot;&quot;</span>
+         <span class="n">serialYaml</span><span class="o">.</span><span class="n">serialization</span>
+         <span class="n">f1</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;files/data.yml&#39;</span><span class="p">)</span>
+         <span class="n">s1</span> <span class="o">=</span> <span class="n">f1</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+         <span class="n">f</span> <span class="o">=</span> <span class="n">StringIO</span><span class="p">(</span><span class="n">s1</span><span class="p">)</span>
+         <span class="n">s2</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">getvalue</span><span class="p">()</span>
+         <span class="c1">#print (s2)</span>
+         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">s2</span><span class="p">,</span> <span class="n">s1</span><span class="p">)</span>
+         <span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="TestSer.test_YamlDes"><a class="viewcode-back" href="../index.html#iostr.TestSer.test_YamlDes">[docs]</a>    <span class="k">def</span> <span class="nf">test_YamlDes</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;test function for yamal deserial &quot;&quot;&quot;</span>
+        <span class="n">s1</span><span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">serialYaml</span><span class="o">.</span><span class="n">deserialization</span><span class="p">)</span>
+        <span class="n">f</span> <span class="o">=</span> <span class="n">StringIO</span><span class="p">(</span><span class="n">s1</span><span class="p">)</span>
+        <span class="n">s2</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">getvalue</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertRaisesRegex</span><span class="p">(</span><span class="ne">ValueError</span><span class="p">,</span> <span class="s1">&#39;Always different adress&#39;</span><span class="p">)</span>
+        <span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span></div></div>
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+ <span class="n">unittest</span><span class="o">.</span><span class="n">main</span><span class="p">()</span>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">ARClab1 1 documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >Module code</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2016, Michael Vlad Paul.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.6.
+    </div>
+  </body>
+</html>

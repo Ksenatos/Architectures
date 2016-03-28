@@ -57,6 +57,7 @@
 <div class="viewcode-block" id="serialization"><a class="viewcode-back" href="../index.html#serialJSON.serialization">[docs]</a><span class="k">def</span> <span class="nf">serialization</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot; decorator for JSON serialization &quot;&quot;&quot;</span>
     <span class="k">def</span> <span class="nf">wrapper</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;wrapper&quot;&quot;&quot;</span>
         <span class="k">print</span><span class="p">(</span><span class="s1">&#39;json s-on&#39;</span><span class="p">)</span>
         <span class="n">mydb</span> <span class="o">=</span> <span class="n">DB</span><span class="p">()</span>
         <span class="n">list_authors</span> <span class="o">=</span> <span class="n">mydb</span><span class="o">.</span><span class="n">get_authors</span><span class="p">()</span>
@@ -72,6 +73,7 @@
 <div class="viewcode-block" id="deserialization"><a class="viewcode-back" href="../index.html#serialJSON.deserialization">[docs]</a><span class="k">def</span> <span class="nf">deserialization</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot; decorator for JSON deserialization &quot;&quot;&quot;</span>
     <span class="k">def</span> <span class="nf">wrapper</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;wrapper&quot;&quot;&quot;</span>
         <span class="k">print</span><span class="p">(</span><span class="s1">&#39;json des-on&#39;</span><span class="p">)</span>
         <span class="n">func</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
         <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;files/basic.json&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
