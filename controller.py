@@ -1,6 +1,8 @@
 """controller module"""
 from model import DB
 from view import View
+import serialPickle as pickles
+import serialJSON as jsons
 # import coverage
 
 __author__ = 'paul'
@@ -104,6 +106,23 @@ class Controller:
         """ffunc searching book by part of his name"""
         authors_name = input('Search: ')
         self.view.print_smth(self.mydb.find_author(authors_name))
+#   исправьте здесь методы
+
+    def serializePickle(self):
+        pickles.makePickleSerialization()
+
+    def deserializePickle(self):
+        lista, listb = pickles.getPickleDeserialize()
+        print(lista)
+        print(listb)
+
+    def serializeJSON(self):
+        jsons.makeJSONSerialize()
+
+    def deserializeJSON(self):
+        lista, listb = jsons.getJSONDeserialize()
+        print(lista)
+        print(listb)
 
     @staticmethod
     def quit():
