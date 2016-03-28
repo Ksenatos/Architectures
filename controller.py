@@ -1,11 +1,30 @@
 """controller module"""
 from model import DB
 from view import View
-import serialPickle as pickles
+import configparser
+#import serialPickle as pickles
 import serialJSON as jsons
 # import coverage
 
 __author__ = 'paul'
+try:
+    config = configparser.ConfigParser()
+    config.read('files/config.py')
+except configparser.ParsingError:
+    print('could not parse')
+try:
+    option = config.get('ModelFile', 'ModelType')
+except:
+    print("exception on %s!" % option)
+
+if option == 'pickle':
+    from serialPickle import serialization
+    from serialPickle import deserialization
+if option == 'json':
+    from serialJSON import serialization
+    from serialJSON import deserialization
+# if config['ModelFile']['ModelType'] == 'yaml':
+#    from serialYAML import serialization
 
 
 class Controller:
@@ -25,7 +44,8 @@ class Controller:
                         "7": self.delete_book_by_id,
                         "8": self.find_books,
                         "9": self.find_author,
-                        "10": self.quit}
+                        "10": self.quit
+                        }
 
     def run(self):
         """func run show menu on a display.
@@ -41,6 +61,8 @@ class Controller:
             else:
                 print("{0} is not a valid choice".format(choice))
 
+
+    @deserialization
     def show_books(self):
         """func show_books get list of books.
         This func call func get_books from class my.db in model.py.
@@ -51,7 +73,7 @@ class Controller:
             self.view.print_smth("Author: %s %s" % (i["fname"], i["lname"]))
             self.view.print_smth("Genre: %s" % i["g.name"])
             self.view.print_smth("--------------------------------")
-
+    @serialization
     def show_authors(self):
         """func show_authors get list of authors.
         This func call func get_authors from class mydb in model.py.
@@ -60,6 +82,7 @@ class Controller:
         for i in self.mydb.get_authors():
             self.view.print_smth("Author: %s %s" % (i["FNAME"], i["LNAME"]))
 
+    @serialization
     def add_book(self):
         """func add_book add book in table book.
         vars books_name and authors_id input by user.
@@ -70,6 +93,7 @@ class Controller:
         genre_id = input('Genre id: ')
         self.mydb.add_book(books_name, int(authors_id), int(genre_id))
 
+    @serialization
     def add_author(self):
         """func add_author add author in table author.
          vars authors_name, authors lastname and authors_age input by user.
@@ -80,6 +104,7 @@ class Controller:
         # authors_age = input('Enter authors age: ')
         self.mydb.add_author(authors_name, authors_lastname)
 
+    @serialization
     def add_genre(self):
         """func add genre in table genre. vars genre name input by user.
         This func call func add_book from class mydb in model.py"""
@@ -87,42 +112,44 @@ class Controller:
         genres_name = input('Enter a new genre: ')
         self.mydb.add_genre(genres_name)
 
+    @serialization
     def delete_book_by_name(self):
         """func delete book in table books by name."""
         books_name = input('Enter books name: ')
         self.mydb.delete_book_by_name(books_name)
 
+    @serialization
     def delete_book_by_id(self):
         """func delete book in table books my Id"""
         books_id = input('Enter books ID: ')
         self.mydb.delete_book_by_id(int(books_id))
-
+    @deserialization
     def find_books(self):
         """func searching book by part of its name"""
         books_name = input('Search: ')
         self.view.print_smth(self.mydb.find_books(books_name))
-
+    @deserialization
     def find_author(self):
         """ffunc searching book by part of his name"""
         authors_name = input('Search: ')
         self.view.print_smth(self.mydb.find_author(authors_name))
 #   исправьте здесь методы
 
-    def serializePickle(self):
-        pickles.makePickleSerialization()
-
-    def deserializePickle(self):
-        lista, listb = pickles.getPickleDeserialize()
-        print(lista)
-        print(listb)
-
-    def serializeJSON(self):
-        jsons.makeJSONSerialize()
-
-    def deserializeJSON(self):
-        lista, listb = jsons.getJSONDeserialize()
-        print(lista)
-        print(listb)
+    # def serializePickle(self):
+    #     pickles.makePickleSerialization()
+    #
+    # def deserializePickle(self):
+    #     lista, listb = pickles.getPickleDeserialize()
+    #     print(lista)
+    #     print(listb)
+    #
+    # def serializeJSON(self):
+    #     jsons.makeJSONSerialize()
+    #
+    # def deserializeJSON(self):
+    #     lista, listb = jsons.getJSONDeserialize()
+    #     print(lista)
+    #     print(listb)
 
     @staticmethod
     def quit():

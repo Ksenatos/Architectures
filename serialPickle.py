@@ -3,24 +3,45 @@ from model import DB
 import pickle
 
 
-def makePickleSerialization():
-    mydb = DB()
-    listAuthors = mydb.get_authors()
-    listBooks = mydb.get_books()
+def serialization(func):
 
-    listForSerialize = {'books': listBooks, 'authors': listAuthors}
-    with open('files/data.pickle', 'wb') as f:
-        pickle.dump(listForSerialize, f)
+    def wrapper(data):
+        mydb = DB()
+        listAuthors = mydb.get_authors()
+        listBooks = mydb.get_books()
+        listForSerialize = {'books': listBooks, 'authors': listAuthors}
+        with open('files/data.pickle', 'wb') as f:
+            pickle.dump(listForSerialize, f)
+        return func
+    return wrapper
 
 
-def getPickleDeserialize():
-    with open('files/data.pickle', 'rb') as f:
-        data = pickle.load(f)
+def deserialization(func):
 
-    listBooks = data['books']
-    listAuthors = data['authors']
+    def wrapper(data):
+        with open('files/data.pickle', 'rb') as f:
+            data = pickle.load(f)
+        return func
+    return wrapper
 
-    return listBooks, listAuthors
+# def makePickleSerialization():
+#     mydb = DB()
+#     listAuthors = mydb.get_authors()
+#     listBooks = mydb.get_books()
+#
+#     listForSerialize = {'books': listBooks, 'authors': listAuthors}
+#     with open('files/data.pickle', 'wb') as f:
+#         pickle.dump(listForSerialize, f)
+#
+#
+# def getPickleDeserialize():
+#     with open('files/data.pickle', 'rb') as f:
+#         data = pickle.load(f)
+#
+#     listBooks = data['books']
+#     listAuthors = data['authors']
+#
+#     return listBooks, listAuthors
 
 
 #   example

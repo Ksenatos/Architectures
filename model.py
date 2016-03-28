@@ -4,7 +4,11 @@
 import pymysql as mdb
 import doctest
 
+
+
 __author__ = 'Michael'
+
+
 
 
 class DB(object):
@@ -73,6 +77,7 @@ class DB(object):
         cur.execute("commit")
         self.close()
 
+
     def add_book(self, name, id_author, id_genre):
         """func add_book add new book in table books"""
         self.connect()
@@ -83,6 +88,7 @@ class DB(object):
         cur.execute("commit")
         self.close()
 
+
     def add_genre(self, name):
         """func add_genre add new genre in table genre"""
         self.connect()
@@ -91,6 +97,7 @@ class DB(object):
                     "(NULL, '%s');" % name)
         cur.execute("commit")
         self.close()
+
 
     def delete_book_by_name(self, name):
         """func delete_book_by_name delete book, from table books,
@@ -101,6 +108,7 @@ class DB(object):
                     "name = '%s');" % name)
         cur.execute("commit")
         self.close()
+
 
     def delete_book_by_id(self, id_book):
         """func delete_book_by_id delete book, from table books,

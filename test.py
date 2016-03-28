@@ -1,4 +1,5 @@
 """Test"""
+"""Test"""
 import unittest
 #import mock
 from mock import Mock
