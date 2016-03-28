@@ -17,6 +17,7 @@ def serialization(func):
         listForSerialize = {'books': listBooks, 'authors': listAuthors}
         with open('files/basic.json', mode='w', encoding='utf-8') as f:
             json.dump(listForSerialize, f)
+        func(data)
         return func
     return wrapper
 
@@ -28,6 +29,7 @@ def deserialization(func):
         with open('files/basic.json', 'r', encoding='utf-8') as f:
             data = json.load(f)
        #     print(data)
+        func(data)
         return func
     return wrapper
 

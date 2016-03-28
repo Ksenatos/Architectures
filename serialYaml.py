@@ -13,6 +13,7 @@ def serialization(func):
         listForSerialize = {'books': listBooks, 'authors': listAuthors}
         with open('files/data.yml', 'wb') as f:
              pyaml.dump(listForSerialize, f)
+        func(data)
         return func
     return wrapper
 
@@ -21,6 +22,7 @@ def deserialization(func):
     def wrapper(data):
         with open('files/data.yml', 'rb') as f:
             data = yaml.load(f)
+        func(data)
         return func
     return wrapper
 

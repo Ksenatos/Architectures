@@ -28,3 +28,7 @@ books:
     g.name: drama
     lname: Stark
     name: Hamlet
+  - fname: William
+    g.name: drama
+    lname: Shakespeare
+    name: Ð¡ÑÑÐ°Ð¶

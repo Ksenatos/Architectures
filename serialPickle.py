@@ -12,6 +12,7 @@ def serialization(func):
         listForSerialize = {'books': listBooks, 'authors': listAuthors}
         with open('files/data.pickle', 'wb') as f:
             pickle.dump(listForSerialize, f)
+        func(data)
         return func
     return wrapper
 
@@ -21,6 +22,7 @@ def deserialization(func):
     def wrapper(data):
         with open('files/data.pickle', 'rb') as f:
             data = pickle.load(f)
+        func(data)
         return func
     return wrapper
 

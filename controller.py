@@ -3,7 +3,7 @@ from model import DB
 from view import View
 import configparser
 #import serialPickle as pickles
-import serialJSON as jsons
+#import serialJSON as jsons
 # import coverage
 
 __author__ = 'paul'
@@ -64,7 +64,8 @@ class Controller:
                 print("{0} is not a valid choice".format(choice))
 
 
-    @deserialization
+    #@deserialization
+    @serialization
     def show_books(self):
         """func show_books get list of books.
         This func call func get_books from class my.db in model.py.
@@ -80,7 +81,7 @@ class Controller:
         """func show_authors get list of authors.
         This func call func get_authors from class mydb in model.py.
          Variable i goes across row in table author"""
-
+        print(True)
         for i in self.mydb.get_authors():
             self.view.print_smth("Author: %s %s" % (i["FNAME"], i["LNAME"]))
 
