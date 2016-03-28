@@ -20,12 +20,14 @@ except:
 if option == 'pickle':
     from serialPickle import serialization
     from serialPickle import deserialization
-if option == 'json':
+elif option == 'json':
     from serialJSON import serialization
     from serialJSON import deserialization
-# if config['ModelFile']['ModelType'] == 'yaml':
-#    from serialYAML import serialization
-
+elif option == 'yaml':
+    from serialYaml import serialization
+    from serialYaml import deserialization
+else:
+    print('<files/config.py>% wrong option')
 
 class Controller:
     """The controller """

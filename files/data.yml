@@ -1,0 +1,30 @@
+authors:
+  - FNAME: Tony
+    ID_AUTHOR: 1
+    LNAME: Stark
+  - FNAME: Tony
+    ID_AUTHOR: 2
+    LNAME: Stark
+  - FNAME: Tony
+    ID_AUTHOR: 3
+    LNAME: Stark
+  - FNAME: Tony
+    ID_AUTHOR: 4
+    LNAME: Stark
+  - FNAME: Tony
+    ID_AUTHOR: 5
+    LNAME: Stark
+  - FNAME: William
+    ID_AUTHOR: 6
+    LNAME: Shakespeare
+  - FNAME: Robert
+    ID_AUTHOR: 7
+    LNAME: Stivenson
+  - FNAME: Naboychenko
+    ID_AUTHOR: 8
+    LNAME: 'the second'
+books:
+  - fname: Tony
+    g.name: drama
+    lname: Stark
+    name: Hamlet
