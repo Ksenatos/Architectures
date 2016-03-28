@@ -9,6 +9,7 @@ import serialYaml
 class TestSer(unittest.TestCase):
 
   def test_SerJason(self):
+   """test function for Json serial """
    serialJSON.serialization
    f1 = open('files/basic.json')
    s1 = f1.read()
@@ -19,9 +20,10 @@ class TestSer(unittest.TestCase):
    f.close()
 
   def test_PickSer(self):
+   """test function for pickle serial """
    serialPickle.serialization
-   f1 = open('files/data.pickle')
-   s1 = f1.read()
+   f1 = open('files/data.pickle','rb')
+   s1 = str(f1.read())
    f = StringIO(s1)
    s2 = f.getvalue()
    #print (s2)
@@ -29,6 +31,7 @@ class TestSer(unittest.TestCase):
    f.close()
 
   def test_JsonDes(self):
+    """test function for Json deserial """
     s1= str(serialJSON.deserialization)
     f = StringIO(s1)
     s2 = f.getvalue()
@@ -37,6 +40,7 @@ class TestSer(unittest.TestCase):
     f.close()
 
   def test_PickDes(self):
+      """test function for pick deserial """
       stroka = str(serialPickle.deserialization)
       f = StringIO(stroka)
       self.assertEqual(0, f.tell())
@@ -46,6 +50,7 @@ class TestSer(unittest.TestCase):
 
 
   def test_SerYaml(self):
+   """test function for yamal serial """
    serialYaml.serialization
    f1 = open('files/data.yml')
    s1 = f1.read()
@@ -56,6 +61,7 @@ class TestSer(unittest.TestCase):
    f.close()
 
   def test_YamlDes(self):
+    """test function for yamal deserial """
     s1= str(serialYaml.deserialization)
     f = StringIO(s1)
     s2 = f.getvalue()
