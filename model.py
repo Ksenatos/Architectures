@@ -32,7 +32,6 @@ class DB(object):
         except mdb.Error as e:
             self.connection = None
 
-        print("sdff")
 
     def close(self):
         """Disconnect database and object mdb

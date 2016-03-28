@@ -64,7 +64,7 @@ class Controller:
                 print("{0} is not a valid choice".format(choice))
 
 
-    #@deserialization
+    @deserialization
     @serialization
     def show_books(self):
         """func show_books get list of books.

@@ -20,9 +20,10 @@ def serialization(func):
 def deserialization(func):
 
     def wrapper(data):
+        func(data)
         with open('files/data.yml', 'rb') as f:
             data = yaml.load(f)
-        func(data)
+
         return func
     return wrapper
 

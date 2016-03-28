@@ -26,10 +26,11 @@ def deserialization(func):
 
     def wrapper(data):
         print('json des-on')
+        func(data)
         with open('files/basic.json', 'r', encoding='utf-8') as f:
             data = json.load(f)
        #     print(data)
-        func(data)
+
         return func
     return wrapper
 
