@@ -8,6 +8,7 @@ __author__ = 'Michael'
 def serialization(func):
     """ decorator for Yaml serialization """
     def wrapper(data):
+        """wrapper"""
         mydb = DB()
         list_authors = mydb.get_authors()
         list_books = mydb.get_books()
@@ -22,6 +23,7 @@ def serialization(func):
 def deserialization(func):
     """ decorator for Yaml deserialization """
     def wrapper(data):
+        """wrapper"""
         func(data)
         with open('files/data.yml', 'rb') as f:
             data = yaml.load(f)

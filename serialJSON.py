@@ -7,6 +7,7 @@ __author__ = 'Michael'
 def serialization(func):
     """ decorator for JSON serialization """
     def wrapper(data):
+        """wrapper"""
         print('json s-on')
         mydb = DB()
         list_authors = mydb.get_authors()
@@ -22,6 +23,7 @@ def serialization(func):
 def deserialization(func):
     """ decorator for JSON deserialization """
     def wrapper(data):
+        """wrapper"""
         print('json des-on')
         func(data)
         with open('files/basic.json', 'r', encoding='utf-8') as f:

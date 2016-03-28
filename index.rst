@@ -43,6 +43,12 @@ YAML
 .. automodule:: serialYaml
    :members:
 
+IOSTR
+========
+
+.. automodule:: iostr
+   :members:
+
 Indices and tables
 ==================
 

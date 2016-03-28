@@ -22,7 +22,11 @@ class TestSer(unittest.TestCase):
   def test_PickSer(self):
    """test function for pickle serial """
    serialPickle.serialization
+<<<<<<< Updated upstream
    f1 = open('files/data.pickle','rb')
+=======
+   f1 = open('files/data.pickle', 'rb')
+>>>>>>> Stashed changes
    s1 = str(f1.read())
    f = StringIO(s1)
    s2 = f.getvalue()

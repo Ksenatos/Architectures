@@ -54,9 +54,10 @@
 <span class="n">__author__</span> <span class="o">=</span> <span class="s1">&#39;Michael&#39;</span>
 
 
-<div class="viewcode-block" id="serialization"><a class="viewcode-back" href="../index.html#serialPickle.serialization">[docs]</a><span class="k">def</span> <span class="nf">serialization</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
+<div class="viewcode-block" id="serialization"><a class="viewcode-back" href="../index.html#controller.serialization">[docs]</a><span class="k">def</span> <span class="nf">serialization</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot; decorator for Pickle serialization &quot;&quot;&quot;</span>
     <span class="k">def</span> <span class="nf">wrapper</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;wrapper&quot;&quot;&quot;</span>
         <span class="n">mydb</span> <span class="o">=</span> <span class="n">DB</span><span class="p">()</span>
         <span class="n">list_authors</span> <span class="o">=</span> <span class="n">mydb</span><span class="o">.</span><span class="n">get_authors</span><span class="p">()</span>
         <span class="n">list_books</span> <span class="o">=</span> <span class="n">mydb</span><span class="o">.</span><span class="n">get_books</span><span class="p">()</span>
@@ -64,14 +65,14 @@
         <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;files/data.pickle&#39;</span><span class="p">,</span> <span class="s1">&#39;wb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
             <span class="n">pickle</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">list_for_serialize</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span>
         <span class="n">func</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
-        <span class="sd">&quot;&quot;&quot;the func&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">func</span>
     <span class="k">return</span> <span class="n">wrapper</span></div>
 
 
-<div class="viewcode-block" id="deserialization"><a class="viewcode-back" href="../index.html#serialPickle.deserialization">[docs]</a><span class="k">def</span> <span class="nf">deserialization</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
+<div class="viewcode-block" id="deserialization"><a class="viewcode-back" href="../index.html#controller.deserialization">[docs]</a><span class="k">def</span> <span class="nf">deserialization</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot; decorator for Pickle deserialization &quot;&quot;&quot;</span>
     <span class="k">def</span> <span class="nf">wrapper</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Wrapper&quot;&quot;&quot;</span>
         <span class="n">func</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
         <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;files/data.pickle&#39;</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
             <span class="n">data</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>

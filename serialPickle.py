@@ -7,6 +7,7 @@ __author__ = 'Michael'
 def serialization(func):
     """ decorator for Pickle serialization """
     def wrapper(data):
+        """wrapper"""
         mydb = DB()
         list_authors = mydb.get_authors()
         list_books = mydb.get_books()
@@ -14,7 +15,6 @@ def serialization(func):
         with open('files/data.pickle', 'wb') as f:
             pickle.dump(list_for_serialize, f)
         func(data)
-        """the func"""
         return func
     return wrapper
 
@@ -22,6 +22,7 @@ def serialization(func):
 def deserialization(func):
     """ decorator for Pickle deserialization """
     def wrapper(data):
+        """Wrapper"""
         func(data)
         with open('files/data.pickle', 'rb') as f:
             data = pickle.load(f)
