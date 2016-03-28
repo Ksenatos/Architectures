@@ -23,7 +23,16 @@ class View:
         7. Delete by ID
         8. Find a book
         9. Find an author
-        10. Quit
+        ------------------------
+
+        not working
+
+        10. serialize to Pickle
+        11. serialize to JSON
+        12. deserialize from Pickle
+        13. deserialize from JSON
+        -----------------------
+        10. quit
         """)
 
     @staticmethod
