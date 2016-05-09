@@ -28,9 +28,3 @@ class Genre(object):
         """initialization"""
         self.id_genre = id_genre
         self.name = name
-
-
-# пример обращение к классу
-
-# a = Author(1, "Mike", "gg")
-# print(a.fname)

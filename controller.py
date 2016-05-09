@@ -1,10 +1,33 @@
 """controller module"""
-from model import DB
+#from model import DB
 from view import View
 import configparser
 # import coverage
 
 __author__ = 'paul'
+
+'''Using config to choose DB type'''
+try:
+    config = configparser.ConfigParser()
+    config.read('files/config_for_SQL.py')
+except configparser.ParsingError:
+    print('could not parse')
+try:
+    option = config.get('ModelFile', 'ModelType')
+except:
+    print("exception on %s!" % option)
+
+if option == 'MySQL':
+    from model import DB
+elif option == 'SQLite':
+    from SQLite import serialization
+elif option == 'PostgreSQL':
+    from PostgreSQL import serialization
+else:
+    print('<files/config_for_SQL.py>% wrong option')
+
+
+
 '''Using config to choose the serialization type'''
 try:
     config = configparser.ConfigParser()
