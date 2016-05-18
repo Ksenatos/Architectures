@@ -1,5 +1,5 @@
-#serialization type
+#DB type
 [ModelFile]
-ModelType = MySQL
-#ModelType = SQLite
+#ModelType = MySQL
+ModelType = SQLite
 # ModelType = PostgreSQL
