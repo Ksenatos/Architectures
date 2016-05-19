@@ -1,5 +1,5 @@
 #DB type
 [ModelFile]
 #ModelType = MySQL
-ModelType = SQLite
-# ModelType = PostgreSQL
+#ModelType = SQLite
+ModelType = PostgreSQL

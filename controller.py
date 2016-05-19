@@ -26,8 +26,8 @@ elif option == 'SQLite':
     from SQLite import DB
     Lite = True
 elif option == 'PostgreSQL':
-    from PostgreSQL import DB
-    Postgre = True
+    from modelPost import DB
+    SQL = True
 else:
     print('<files/config_for_SQL.py>% wrong option')
 
